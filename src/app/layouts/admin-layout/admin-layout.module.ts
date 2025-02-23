@@ -14,6 +14,12 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 
+//importes de nuevos componentes
+import { productosComponent } from "../../pages/productos_components/productos/productos.component";
+import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
+import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserProfileComponent,
     TablesComponent,
     IconsComponent,
-    MapsComponent
+    MapsComponent,
+    productosComponent,
+    productosRegistroComponent,
+    productosActualizarComponent
   ]
 })
 
