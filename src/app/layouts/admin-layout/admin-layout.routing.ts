@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/components/icons/icons.component';
-import { MapsComponent } from '../../pages/components/maps/maps.component';
-import { UserProfileComponent } from '../../pages/components/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/components/tables/tables.component';
+import { IconsComponent } from '../../pages/icons/icons.component';
+import { MapsComponent } from '../../pages/maps/maps.component';
+import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
+import { TablesComponent } from '../../pages/tables/tables.component';
 import { productosComponent } from 'src/app/pages/productos_components/productos/productos.component';
 import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
 import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
@@ -22,11 +22,11 @@ import { ActualizarUsuarioComponent } from 'src/app/pages/usuarios_component/act
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
-    // { path: 'user-profile', component: UserProfileComponent },
-    // { path: 'tables', component: TablesComponent },
-    // { path: 'icons', component: IconsComponent },
-    // { path: 'maps', component: MapsComponent },
-    // { path: 'maps', component: MapsComponent },
+    { path: 'user-profile', component: UserProfileComponent },
+    { path: 'tables', component: TablesComponent },
+    { path: 'icons', component: IconsComponent },
+    { path: 'maps', component: MapsComponent },
+    { path: 'maps', component: MapsComponent },
 
     //rutas nuevas productos
     { path: 'productos', component: productosComponent },
@@ -45,7 +45,7 @@ export const AdminLayoutRoutes: Routes = [
 
     //rutas nuevas citas
     { path: 'citas', component: CitasComponent },
-    // { path: 'citasRegistro', component: productosRegistroComponent },
+     { path: 'citasRegistro', component: productosRegistroComponent },
     { path: 'citasAtualizar/:id', component: CitaActualizarComponent },
 
     //rutas nuevas usuarios
