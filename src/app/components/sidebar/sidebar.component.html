@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <!-- Toggler -->
     <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
-       aria-controls="sidenav-collapse-main">
+      aria-controls="sidenav-collapse-main">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Brand -->
     <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
-      <img src="./assets/img/brand/red.png" class="navbar-brand-img" alt="...">
+      <img src="./assets/img/theme/angular.jpg" class="navbar-brand-img" alt="...">
     </a>
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
@@ -32,39 +32,39 @@
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
+            <h6 class="text-overflow m-0">Vienvenido</h6>
           </div>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>Mi perfil</span>
           </a>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
+            <span>Ajustes</span>
           </a>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
+            <span>Actividades</span>
           </a>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-support-16"></i>
-            <span>Support</span>
+            <span>Soporte</span>
           </a>
           <div class="dropdown-divider"></div>
           <a href="#!" class="dropdown-item">
             <i class="ni ni-user-run"></i>
-            <span>Logout</span>
+            <span>Salir</span>
           </a>
         </div>
       </li>
     </ul>
     <!-- Collapse -->
-    <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
       <!-- Collapse header -->
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a  routerLinkActive="active" [routerLink]="['/dashboard']">
+            <a routerLinkActive="active" [routerLink]="['/dashboard']">
               <img src="./assets/img/brand/blue.png">
             </a>
           </div>
@@ -79,7 +79,8 @@
       <!-- Form -->
       <form class="mt-4 mb-3 d-md-none">
         <div class="input-group input-group-rounded input-group-merge">
-          <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+          <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
+            aria-label="Search">
           <div class="input-group-prepend">
             <div class="input-group-text">
               <span class="fa fa-search"></span>
@@ -88,14 +89,33 @@
         </div>
       </form>
       <!-- Navigation -->
-      <ul class="navbar-nav">
-          <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-                  <i class="ni {{menuItem.icon}}"></i>
-                  {{menuItem.title}}
+      <ul class="navbar-nav"> 
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+
+          <!-- Opción sin submenú -->
+          <a *ngIf="!menuItem.children" routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+
+          <!-- Opción con submenú -->
+          <a *ngIf="menuItem.children" class="nav-link" (click)="toggleMenu(menuItem.title)">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+
+          <!-- Submenú desplegable -->
+          <ul *ngIf="expandedMenus[menuItem.title]" class="nav flex-column ">
+            <li *ngFor="let child of menuItem.children" class="nav-item">
+              <a routerLinkActive="active" [routerLink]="[child.path]" class="nav-link">
+                <i class="ni {{child.icon}}"></i>
+                {{child.title}}
               </a>
-          </li>
+            </li>
+          </ul>
+        </li>
       </ul>
+
       <!-- Divider -->
       <hr class="my-3">
       <!-- Heading -->
@@ -103,17 +123,17 @@
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial">
+          <a class="nav-link" href="#">
             <i class="ni ni-spaceship"></i> Getting started
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
+          <a class="nav-link" href="#">
             <i class="ni ni-palette"></i> Foundation
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
+          <a class="nav-link" href="#">
             <i class="ni ni-ui-04"></i> Components
           </a>
         </li>
