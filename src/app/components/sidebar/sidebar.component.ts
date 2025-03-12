@@ -28,9 +28,9 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     children: [
       { path: '/vehiculos', title: 'Lista de Vehículos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: '/mantenimientos', title: 'Mantenimientos', icon: ' ni ni-settings text-pink', class: '' },
-      { path: 'vehiculosAtualizar/:id', title: 'Actualizar vehículo', icon: ' ni ni-settings text-pink', class: ''  },
-      
+      { path: '/mantenimientos', title: 'Mantenimientos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
+      { path: 'vehiculosAtualizar/:id', title: 'Actualizar vehículo', icon: ' ni ni-bus-front-12 text-blue', class: '' },
+
     ]
   },
   {
@@ -40,11 +40,11 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     children: [
 
-      { path: '/usuarios', title: 'Lista de usuarios', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: '/usuariosRegistro', title: 'Crear usuario', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-          { path: 'citas', title: 'citas', icon: ' ni ni-bus-front-12 text-blue', class: ''  },
-           { path: 'citasRegistro', title: 'Registro de cita', icon: ' ni ni-bus-front-12 text-blue', class: ''  },
-          { path: 'citasAtualizar/:id', title: 'Atualizar Cita', icon: ' ni ni-bus-front-12 text-blue', class: ''  },
+      { path: '/usuarios', title: 'Lista de usuarios', icon: ' ni ni-single-02 text-orange', class: '' },
+      { path: '/usuariosRegistro', title: 'Crear usuario', icon: ' ni ni-single-02 text-blue', class: '' },
+      { path: 'citas', title: 'citas', icon: ' ni ni-single-02 text-orange', class: '' },
+      { path: 'citasRegistro', title: 'Registro de cita', icon: ' ni ni-single-02 text-blue', class: '' },
+      { path: 'citasAtualizar/:id', title: 'Atualizar Cita', icon: ' ni ni-single-02 text-red', class: '' },
 
     ]
   }
@@ -80,7 +80,7 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
   public expandedMenus: { [key: string]: boolean } = {}; // Controla qué menú está expandido
 
-  constructor(private router: Router) { }
+  constructor(private readonly router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES;
