@@ -14,7 +14,7 @@ export class ProductosService {
 
 
   //metodo para obtener los productos del la apiRest
-  obtenerListaOProductos(): Observable<Productos[]> {
+  getProductos(): Observable<Productos[]> {
     return this.HttpClient.get<Productos[]>(`${this.baseURL}`);
   }
 

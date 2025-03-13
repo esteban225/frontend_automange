@@ -100,7 +100,7 @@
               <div class="card-header border-0">
                 <h3 class="mb-0">Tabla de productos</h3>
               </div>
-              <div class="table-responsive">
+              <div class="table-responsive" >
                 <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
@@ -115,10 +115,10 @@
                   </thead>
                   <tbody *ngFor="let producto of productos">
                     <tr>
-                      <th scope="row">{{producto.nombre}}</th>
-                      <th scope="row">{{producto.descripcion}}</th>
-                      <th scope="row">{{producto.precio}}</th>
-                      <th scope="row">{{producto.cantidad}}</th>
+                      <th scope="row">{{producto?.nombre}}</th>
+                      <th scope="row">{{producto?.descripcion}}</th>
+                      <th scope="row">{{producto?.precio}}</th>
+                      <th scope="row">{{producto?.cantidad}}</th>
                       <th scope="row">
                         <a routerLink="/productosAtualizar" class="btn btn-success" (click)="actualizarProducto(producto.id)"> Editar</a>
                       </th>
@@ -132,6 +132,7 @@
                   </tbody>
                 </table>
               </div>
+
               <div class="card-footer py-4">
                 <nav aria-label="...">
                   <ul class="pagination justify-content-end mb-0">

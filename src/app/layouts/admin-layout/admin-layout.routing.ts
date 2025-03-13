@@ -5,7 +5,7 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
-import { productosComponent } from 'src/app/pages/productos_components/productos/productos.component';
+import { ProductosComponent } from 'src/app/pages/productos_components/productos/productos.component';
 import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
 import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
 import { MantenimientoComponent } from 'src/app/pages/mantenimiento_component/mantenimiento/mantenimiento.component';
@@ -29,7 +29,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps', component: MapsComponent },
 
     //rutas nuevas productos
-    { path: 'productos', component: productosComponent },
+    { path: 'productos', component: ProductosComponent },
     { path: 'productosRegistro', component: productosRegistroComponent },
     { path: 'productosAtualizar/:id', component: productosActualizarComponent },
 

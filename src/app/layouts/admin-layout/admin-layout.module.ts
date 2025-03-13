@@ -15,7 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 //importes de nuevos componentes
-import { productosComponent } from "../../pages/productos_components/productos/productos.component";
+import { ProductosComponent } from "../../pages/productos_components/productos/productos.component";
 import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
 import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
 
@@ -52,7 +52,7 @@ import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehi
     TablesComponent,
     IconsComponent,
     MapsComponent,
-    productosComponent,
+    ProductosComponent,
     productosRegistroComponent,
     productosActualizarComponent,
     UsuariosComponent,

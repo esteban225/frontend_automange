@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { productosComponent } from "./pages/productos_components/productos/productos.component";
+import { ProductosComponent } from "./pages/productos_components/productos/productos.component";
 import { productosRegistroComponent } from './pages/productos_components/productosRegistro/productosRegistro.component';
 import { productosActualizarComponent } from './pages/productos_components/productosActualizar/productosActualizar.component';
 const routes: Routes = [
@@ -13,16 +13,9 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-      }
-    ]
-  }, {
+  },
+
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
@@ -32,10 +25,20 @@ const routes: Routes = [
       }
     ]
   },
+   {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+      }
+    ]
+  }, 
   //nuevas rutas 
   {
     path: 'productos',
-    component: productosComponent
+    component: ProductosComponent
   },
   {
     path: 'productosRegistro',
