@@ -5,12 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { ProductosComponent } from "./pages/productos_components/productos/productos.component";
-import { productosRegistroComponent } from './pages/productos_components/productosRegistro/productosRegistro.component';
-import { productosActualizarComponent } from './pages/productos_components/productosActualizar/productosActualizar.component';
+import { AuthGuard } from './service/auth_guard/auth.guard';
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
@@ -28,6 +26,7 @@ const routes: Routes = [
    {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: '',
@@ -35,27 +34,7 @@ const routes: Routes = [
       }
     ]
   }, 
-  //nuevas rutas 
-  {
-    path: 'productos',
-    component: ProductosComponent
-  },
-  {
-    path: 'productosRegistro',
-    component: productosRegistroComponent
-  },
-  {
-    path: 'productosActualizar/:id',
-    component: productosActualizarComponent
-  },
-  { 
-    path: 'vehiculos',
-    redirectTo: 'dashboard'
-  },
-  {
-    path: 'mantenimientos',
-    redirectTo: 'dashboard'
-  }, {
+ {
     path: '**',
     redirectTo: 'dashboard'
   }
