@@ -8,9 +8,9 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Vehículos revisados</h5>
                   <span class="h2 font-weight-bold mb-0">350,897</span>
-                </div>
+                </div>r
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
                     <i class="fas fa-chart-bar"></i>
@@ -19,7 +19,7 @@
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-nowrap">Mensualmente</span>
               </p>
             </div>
           </div>
@@ -29,7 +29,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Inventario</h5>
                   <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
@@ -40,7 +40,7 @@
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
+                <span class="text-nowrap">Desde el mes pasado</span>
               </p>
             </div>
           </div>
@@ -50,7 +50,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Usuarios registrados</h5>
                   <span class="h2 font-weight-bold mb-0">924</span>
                 </div>
                 <div class="col-auto">
@@ -61,7 +61,7 @@
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
+                <span class="text-nowrap">Desde el mes pasado</span>
               </p>
             </div>
           </div>
@@ -71,7 +71,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Ventas</h5>
                   <span class="h2 font-weight-bold mb-0">49,65%</span>
                 </div>
                 <div class="col-auto">
@@ -82,7 +82,7 @@
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-nowrap">Desde el mes pasado</span>
               </p>
             </div>
           </div>
@@ -98,8 +98,8 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-              <h2 class="text-white mb-0">Sales value</h2>
+              <h6 class="text-uppercase text-light ls-1 mb-1">Citas</h6>
+              <h2 class="text-white mb-0">Mantenimientos</h2>
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
@@ -107,7 +107,7 @@
                   (click)="data=datasets[0];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}"
                     data-toggle="tab" (click)="clicked=true;clicked1=false">
-                    <span class="d-none d-md-block">Month</span>
+                    <span class="d-none d-md-block">Mensual</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
@@ -115,8 +115,8 @@
                   (click)="data=datasets[1];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}"
                     data-toggle="tab" (click)="clicked=false;clicked1=true">
-                    <span class="d-none d-md-block">Week</span>
-                    <span class="d-md-none">W</span>
+                    <span class="d-none d-md-block">Semanal</span>
+                    <span class="d-md-none">S</span>
                   </a>
                 </li>
               </ul>
@@ -137,8 +137,8 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h2 class="mb-0">Total orders</h2>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Productividad mensualmente</h6>
+              <h2 class="mb-0">Total ventas</h2>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Page visits</h3>
+              <h3 class="mb-0">Estadistica usuarios</h3>
             </div>
             <div class="col text-right">
               <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -169,16 +169,16 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Page name</th>
-                <th scope="col">Visitors</th>
-                <th scope="col">Unique users</th>
-                <th scope="col">Bounce rate</th>
+                <th scope="col">Clientes</th>
+                <th scope="col">Visitas</th>
+                <th scope="col">Citas</th>
+                <th scope="col">Porcentage de ingreso</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">
-                  /argon/
+                  Alejandro
                 </th>
                 <td>
                   4,569
@@ -192,7 +192,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/index.html
+                  Carolina
                 </th>
                 <td>
                   3,985
@@ -206,7 +206,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/charts.html
+                  Daniel
                 </th>
                 <td>
                   3,513
@@ -220,7 +220,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/tables.html
+                  Fernanda
                 </th>
                 <td>
                   2,050
@@ -234,7 +234,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  /argon/profile.html
+                  Martín
                 </th>
                 <td>
                   1,795
@@ -256,7 +256,7 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Social traffic</h3>
+              <h3 class="mb-0">Tipos de vehiculos</h3>
             </div>
             <div class="col text-right">
               <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -268,15 +268,15 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Referral</th>
-                <th scope="col">Visitors</th>
+                <th scope="col">Marcas</th>
+                <th scope="col">Ingreos</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">
-                  Facebook
+                  Toyota
                 </th>
                 <td>
                   1,480
@@ -295,7 +295,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Facebook
+                  Ford
                 </th>
                 <td>
                   5,480
@@ -314,7 +314,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Google
+                  Chevrolet
                 </th>
                 <td>
                   4,807
@@ -333,7 +333,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  Instagram
+                  Honda
                 </th>
                 <td>
                   3,678
@@ -352,7 +352,7 @@
               </tr>
               <tr>
                 <th scope="row">
-                  twitter
+                  BMW
                 </th>
                 <td>
                   2,645
