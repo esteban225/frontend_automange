@@ -11,7 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { AuthInterceptor } from './class/interceptor_class/auth-interceptor'; // Update the path as necessary
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { AuthInterceptor } from './class/interceptor_class/auth-interceptor'; //
   ],
   declarations: [
     AppComponent,
-    AuthLayoutComponent,
+    AuthLayoutComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

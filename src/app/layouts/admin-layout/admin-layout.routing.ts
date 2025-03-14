@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
-import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
-import { TablesComponent } from '../../pages/tables/tables.component';
-import { productosComponent } from 'src/app/pages/productos_components/productos/productos.component';
+// import { IconsComponent } from '../../pages/icons/icons.component';
+// import { MapsComponent } from '../../pages/maps/maps.component';
+// import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
+// import { TablesComponent } from '../../pages/tables/tables.component';
+import { ProductosComponent } from 'src/app/pages/productos_components/productos/productos.component';
 import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
 import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
 import { MantenimientoComponent } from 'src/app/pages/mantenimiento_component/mantenimiento/mantenimiento.component';
@@ -19,37 +19,39 @@ import { CitaActualizarComponent } from 'src/app/pages/citas_component/cita-actu
 import { UsuariosComponent } from 'src/app/pages/usuarios_component/usuarios/usuarios.component';
 import { UsuariosRegistrerComponent } from 'src/app/pages/usuarios_component/usuarios-registrer/usuarios-registrer.component';
 import { ActualizarUsuarioComponent } from 'src/app/pages/usuarios_component/actualizar-usuario/actualizar-usuario.component';
+import { AuthGuard } from "src/app/service/auth_guard/auth.guard";
+
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'user-profile', component: UserProfileComponent },
-    { path: 'tables', component: TablesComponent },
-    { path: 'icons', component: IconsComponent },
-    { path: 'maps', component: MapsComponent },
-    { path: 'maps', component: MapsComponent },
+    { path: 'dashboard', component: DashboardComponent  },
+    // { path: 'user-profile', component: UserProfileComponent },
+    // { path: 'tables', component: TablesComponent },
+    // { path: 'icons', component: IconsComponent },
+    // { path: 'maps', component: MapsComponent },
+    // { path: 'maps', component: MapsComponent },
 
     //rutas nuevas productos
-    { path: 'productos', component: productosComponent },
-    { path: 'productosRegistro', component: productosRegistroComponent },
-    { path: 'productosAtualizar/:id', component: productosActualizarComponent },
+    { path: 'productos', component: ProductosComponent, canActivate:[AuthGuard] },
+    { path: 'productosRegistro', component: productosRegistroComponent, canActivate:[AuthGuard]},
+    { path: 'productosActualizar/:id', component: productosActualizarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas mantenimientos
-    { path: 'mantenimientos', component: MantenimientoComponent },
-    { path: 'mantenimientosRegistro', component: RegistroMantenimientoComponent },
-    { path: 'mantenimientosAtualizar/:id', component: ActualizarMantenimientoComponent },
+    { path: 'mantenimientos', component: MantenimientoComponent, canActivate:[AuthGuard] },
+    { path: 'mantenimientosRegistro', component: RegistroMantenimientoComponent, canActivate:[AuthGuard] },
+    { path: 'mantenimientosAtualizar/:id', component: ActualizarMantenimientoComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas vehiculos
-    { path: 'vehiculos', component: VehiculosComponent },
-    { path: 'vehiculosRegistro', component: VehiculosRegstroComponent },
-    { path: 'vehiculosAtualizar/:id', component: VehiculosEditarComponent },
+    { path: 'vehiculos', component: VehiculosComponent, canActivate:[AuthGuard] },
+    { path: 'vehiculosRegistro', component: VehiculosRegstroComponent, canActivate:[AuthGuard]},
+    { path: 'vehiculosAtualizar/:id', component: VehiculosEditarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas citas
-    { path: 'citas', component: CitasComponent },
-     { path: 'citasRegistro', component: productosRegistroComponent },
-    { path: 'citasAtualizar/:id', component: CitaActualizarComponent },
+    { path: 'citas', component: CitasComponent, canActivate:[AuthGuard] },
+     { path: 'citasRegistro', component: productosRegistroComponent, canActivate:[AuthGuard] },
+    { path: 'citasAtualizar/:id', component: CitaActualizarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas usuarios
-    { path: 'usuarios', component: UsuariosComponent },
-    { path: 'usuariosRegistro', component: UsuariosRegistrerComponent },
-    { path: 'usuariosAtualizar/:id', component:ActualizarUsuarioComponent }
+    { path: 'usuarios', component: UsuariosComponent, canActivate:[AuthGuard] },
+    { path: 'usuariosRegistro', component: UsuariosRegistrerComponent, canActivate:[AuthGuard] },
+    { path: 'usuariosAtualizar/:id', component:ActualizarUsuarioComponent, canActivate:[AuthGuard] }
 ];

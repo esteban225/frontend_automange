@@ -10,15 +10,15 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
 
-  { path: '/dashboard', title: 'Administrador', icon: 'ni-tv-2 text-primary', class: '' },
+  { path: '/admin/dashboard', title: 'Administrador', icon: 'ni-tv-2 text-primary', class: '' },
   {
     path: '',
     title: 'Productos',
     icon: 'ni ni-cart text-orange',
     class: '',
     children: [
-      { path: '/productos', title: 'Lista de Productos', icon: 'ni ni-cart text-orange', class: '' },
-      { path: '/productosRegistro', title: 'Registro de Productos', icon: 'ni ni-cart text-orange', class: '' },
+      { path: '/admin/productos', title: 'Lista de Productos', icon: 'ni ni-cart text-orange', class: '' },
+      { path: '/admin/productosRegistro', title: 'Registro de Productos', icon: 'ni ni-cart text-orange', class: '' },
     ]
   },
   {
@@ -27,9 +27,9 @@ export const ROUTES: RouteInfo[] = [
     icon: 'ni ni-bus-front-12 text-blue',
     class: '',
     children: [
-      { path: '/vehiculos', title: 'Lista de Vehículos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: '/mantenimientos', title: 'Mantenimientos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: 'vehiculosAtualizar/:id', title: 'Actualizar vehículo', icon: ' ni ni-bus-front-12 text-blue', class: '' },
+      { path: '/admin/vehiculos', title: 'Lista de Vehículos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
+      { path: '/admin/mantenimientos', title: 'Mantenimientos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
+      { path: '/admin/vehiculosAtualizar/:id', title: 'Actualizar vehículo', icon: ' ni ni-bus-front-12 text-blue', class: '' },
 
     ]
   },
@@ -39,13 +39,11 @@ export const ROUTES: RouteInfo[] = [
     icon: 'ni ni-single-02 text-yellow',
     class: '',
     children: [
-
-      { path: '/usuarios', title: 'Lista de usuarios', icon: ' ni ni-single-02 text-orange', class: '' },
-      { path: '/usuariosRegistro', title: 'Crear usuario', icon: ' ni ni-single-02 text-blue', class: '' },
-      { path: 'citas', title: 'citas', icon: ' ni ni-single-02 text-orange', class: '' },
-      { path: 'citasRegistro', title: 'Registro de cita', icon: ' ni ni-single-02 text-blue', class: '' },
-      { path: 'citasAtualizar/:id', title: 'Atualizar Cita', icon: ' ni ni-single-02 text-red', class: '' },
-
+      { path: '/admin/usuarios', title: 'Lista de usuarios', icon: ' ni ni-single-02 text-orange', class: '' },
+      { path: '/admin/usuariosRegistro', title: 'Crear usuario', icon: ' ni ni-single-02 text-blue', class: '' },
+      { path: '/admin/citas', title: 'citas', icon: ' ni ni-single-02 text-orange', class: '' },
+      { path: '/admin/citasRegistro', title: 'Registro de cita', icon: ' ni ni-single-02 text-blue', class: '' },
+      { path: '/admin/citasAtualizar/:id', title: 'Atualizar Cita', icon: ' ni ni-single-02 text-red', class: '' },
     ]
   }
 

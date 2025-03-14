@@ -1,10 +1,10 @@
 export class Vehiculos {
-    Id: number;
-    nombre: string;
-    marca: string;
-    modelo: number;
-    cilindraje: number;
-    placa: string;
-    imagen: string;
+    Id: number=0;
+    nombre: string ="";
+    marca: string ="";
+    modelo: number=0;
+    cilindraje: number=0;
+    placa: string ="";
+    imagen: string ="";
 }
 

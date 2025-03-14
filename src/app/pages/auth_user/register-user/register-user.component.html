@@ -1,0 +1,170 @@
+<div class="header bg-gradient-primary py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Bienvenido!</h1>
+          <p class="text-lead text-light">Use este formulario para su registro</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+          <div class="text-muted text-center mt-2 mb-4"><small>Iniciar sesión con:</small></div>
+          <div class="text-center">
+            <a href="javascript:void(0)" class="btn btn-neutral btn-icon mr-4">
+              <span class="btn-inner--icon"><img src="assets/img/icons/common/github.svg" alt="Github icon"></span>
+              <span class="btn-inner--text">Github</span>
+            </a>
+            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon"><img src="assets/img/icons/common/google.svg" alt="Google icon"></span>
+              <span class="btn-inner--text">Google</span>
+            </a>
+          </div>
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <small>Registra tus datos</small>
+          </div>
+          <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+
+            <!-- Nombre -->
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Name" type="text" required formControlName="name">
+                <small *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                  class="text-danger">
+                  Name is required (min 3 characters)
+                </small>
+              </div>
+            </div>
+
+            <!-- userName -->
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="UserName" type="text" required formControlName="userName">
+                <small *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched"
+                  class="text-danger">
+                  userName is required (min 3 characters)
+                </small>
+              </div>
+            </div>
+
+
+            <!-- Email -->
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" type="email" required formControlName="email">
+                <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                  class="text-danger">
+                  Enter a valid email
+                </small>
+              </div>
+            </div>
+
+
+            <!-- Phone -->
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phone" required="">
+                <small *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+                  class="text-danger">
+                  Enter a valid 10-digit phone number
+                </small>
+              </div>
+            </div>
+
+            <!-- Direccion -->
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                <small *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched"
+                  class="text-danger">
+                  Address is required
+                </small>
+              </div>
+            </div>
+
+
+            <!-- Contraseña -->
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                  (input)="checkPasswordStrength()">
+                <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                  class="text-danger">
+                  Password must be at least 8 characters, include a number, an uppercase letter, and a special
+                  character.
+                </small>
+                <div class="text-muted font-italic">
+                  <small>Password strength: <span
+                      [ngClass]="{'text-success': passwordStrength === 'strong', 'text-danger': passwordStrength === 'weak'}">{{
+                      passwordStrength }}</span></small>
+                </div>
+              </div>
+            </div>
+            <!-- Confirmar Contraseña -->
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Confirm Password"
+                formControlName="confirmPassword">
+              <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched"
+                class="text-danger">
+                Passwords do not match!
+              </small>
+            </div>
+            <div class="text-muted font-italic"><small>password strength: <span
+                  class="text-success font-weight-700">strong</span></small></div>
+            <div class="row my-4">
+              <div class="col-12">
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <label>
+                    <input type="checkbox" formControlName="agree" title="Agree to terms"> I agree to the <a
+                      href="#">Privacy Policy</a>
+                  </label>
+                  <small *ngIf="registerForm.get('agree')?.invalid && registerForm.get('agree')?.touched"
+                    class="text-danger">
+                    You must accept the terms
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <!-- Botón de envío -->
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Create
+                account</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

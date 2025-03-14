@@ -1,6 +1,6 @@
 export class Citas {
-    id:number;
-    fechaPeticion:string;
-    fechaCita:string;
-    caracteristicas:string;
+    id:number = 0;
+    fechaPeticion:string ="";
+    fechaCita:string  ="";
+    caracteristicas:string  ="";
 }

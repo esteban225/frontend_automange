@@ -33,4 +33,9 @@ export class NavbarComponent implements OnInit {
     return 'Dashboard';
   }
 
+  CerrarSesion(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }
