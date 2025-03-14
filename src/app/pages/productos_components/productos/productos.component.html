@@ -120,13 +120,13 @@
                       <th scope="row">{{producto?.precio}}</th>
                       <th scope="row">{{producto?.cantidad}}</th>
                       <th scope="row">
-                        <a routerLink="/productosAtualizar" class="btn btn-success" (click)="actualizarProducto(producto.id)"> Editar</a>
+                        <a  class="btn btn-success" (click)="actualizarProducto(producto.id)"> Editar</a>
                       </th>
                       <th scope="row">
                         <a  class="btn btn-danger" (click)="eliminarProducto(producto.id)"> Eliminar</a>
                       </th>
                       <th scope="row">
-                        <a routerLink="/productosDetalle" class="btn btn-info" > Detalles</a>
+                        <a routerLink="/admin/productosDetalle" class="btn btn-info" > Detalles</a>
                       </th>
                     </tr>
                   </tbody>

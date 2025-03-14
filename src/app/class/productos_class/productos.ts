@@ -1,8 +1,8 @@
 export class Productos {
-    id: number=0;
-    nombre: string ="";
-    descripcion: string ="";
-    imagen: string ="";
-    precio: number=0;
-    cantidad: number=0;
+    id: number;
+    nombre: string ;
+    descripcion: string;
+    imagen: string;
+    precio: number;
+    cantidad: number;
 }

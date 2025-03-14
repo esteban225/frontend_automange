@@ -66,9 +66,10 @@ export class ProductosComponent implements OnInit { // Declara la clase del comp
   }
 
   actualizarProducto(id: number) { // Método para actualizar un producto
-    this.router.navigate(['productosActualizar', id]); // Redirige a la vista de actualización del producto con el ID proporcionado
+    console.log('/productosActualizar', id);
+    this.router.navigate(['/admin/productosActualizar', id]);
+    //this.router.navigate(['admin/productosActualizar', id]); // Redirige a la vista de actualización del producto con el ID proporcionado
   }
-
   eliminarProducto(id: number) { // Método para eliminar un producto
     Swal.fire({ // Muestra una alerta de confirmación antes de eliminar el producto
       title: '¿Estás seguro?',

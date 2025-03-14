@@ -33,7 +33,7 @@ export const AdminLayoutRoutes: Routes = [
     //rutas nuevas productos
     { path: 'productos', component: ProductosComponent, canActivate:[AuthGuard] },
     { path: 'productosRegistro', component: productosRegistroComponent, canActivate:[AuthGuard]},
-    { path: 'productosAtualizar/:id', component: productosActualizarComponent, canActivate:[AuthGuard] },
+    { path: 'productosActualizar/:id', component: productosActualizarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas mantenimientos
     { path: 'mantenimientos', component: MantenimientoComponent, canActivate:[AuthGuard] },

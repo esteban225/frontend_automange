@@ -13,9 +13,10 @@ export class AuthUserRegisretService {
 
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
+
   /**
    * Registra un nuevo usuario enviando los datos al backend.
-   * @param userData - Datos del usuario (nombre, email, teléfono, dirección, contraseña).
+   * @param userData - .
    * @returns Observable con la respuesta del servidor.
    */
   register(userData: any): Observable<any> {

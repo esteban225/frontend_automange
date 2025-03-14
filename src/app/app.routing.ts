@@ -7,11 +7,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './service/auth_guard/auth.guard';
 const routes: Routes = [
-  {
-    path: 'admin',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
 
   {
     path: '',
@@ -34,10 +29,7 @@ const routes: Routes = [
       }
     ]
   }, 
- {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+
 ];
 
 @NgModule({
