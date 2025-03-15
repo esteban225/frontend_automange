@@ -9,6 +9,11 @@
       </div>
     </div>
   </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
 </div>
 <!-- Page content -->
 <div class="container mt--8 pb-5">
@@ -34,9 +39,7 @@
             <small>Registra tus datos</small>
           </div>
           <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
-
             <!-- Nombre -->
-
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -49,9 +52,7 @@
                 </small>
               </div>
             </div>
-
             <!-- userName -->
-
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -64,8 +65,6 @@
                 </small>
               </div>
             </div>
-
-
             <!-- Email -->
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
@@ -79,24 +78,20 @@
                 </small>
               </div>
             </div>
-
-
             <!-- Phone -->
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phone" required="">
+                <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phone" required>
                 <small *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
                   class="text-danger">
                   Enter a valid 10-digit phone number
                 </small>
               </div>
             </div>
-
-            <!-- Direccion -->
-
+            <!-- Dirección -->
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -109,58 +104,74 @@
                 </small>
               </div>
             </div>
-
-
-            <!-- Contraseña -->
+            <!-- Checkbox de aceptación de términos y condiciones -->
             <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                  (input)="checkPasswordStrength()">
-                <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-                  class="text-danger">
-                  Password must be at least 8 characters, include a number, an uppercase letter, and a special
-                  character.
-                </small>
-                <div class="text-muted font-italic">
-                  <small>Password strength: <span
-                      [ngClass]="{'text-success': passwordStrength === 'strong', 'text-danger': passwordStrength === 'weak'}">{{
-                      passwordStrength }}</span></small>
-                </div>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="agree" formControlName="agree">
+                <label class="custom-control-label" for="agree">I agree to the <a
+                    (click)="toggleTooltip()">Privacy Policy</a></label>
               </div>
-            </div>
-            <!-- Confirmar Contraseña -->
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Confirm Password"
-                formControlName="confirmPassword">
-              <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched"
+              <small *ngIf="registerForm.get('agree')?.invalid && registerForm.get('agree')?.touched"
                 class="text-danger">
-                Passwords do not match!
+                <div class="privacy-policy">
+                  <h2>Políticas de Privacidad</h2>
+                  <p><strong>Última actualización: 2025</strong></p>
+                
+                  <p>En <strong>Automanage</strong>, valoramos y respetamos tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información personal cuando interactúas con nuestros servicios. Te invitamos a leer detenidamente estos términos para comprender cómo tratamos tus datos.</p>
+                
+                  <h3>1. Información que recopilamos</h3>
+                  <p>Recopilamos datos personales cuando te registras en nuestro sistema o interactúas con nuestros servicios. Esta información puede incluir:</p>
+                  <ul>
+                    <li><strong>Datos personales:</strong> Nombre, dirección de correo electrónico, número de teléfono, dirección, etc.</li>
+                    <li><strong>Datos de uso:</strong> Información sobre cómo interactúas con nuestra plataforma, incluyendo direcciones IP, actividad en la web, etc.</li>
+                    <li><strong>Información de pago:</strong> Datos necesarios para procesar pagos, si aplica.</li>
+                  </ul>
+                
+                  <h3>2. Uso de la información</h3>
+                  <p>La información que recopilamos se utiliza para los siguientes fines:</p>
+                  <ul>
+                    <li>Proveer acceso a nuestros servicios y facilitar la gestión de tu cuenta.</li>
+                    <li>Personalizar tu experiencia y ofrecerte productos o servicios según tus preferencias.</li>
+                    <li>Mejorar nuestras plataformas y servicios con base en tus interacciones y comentarios.</li>
+                    <li>Comunicarnos contigo para informarte sobre actualizaciones, cambios en los términos o promociones especiales.</li>
+                    <li>Cumplir con obligaciones legales o regulatorias.</li>
+                  </ul>
+                
+                  <h3>3. Protección de tus datos</h3>
+                  <p>Implementamos medidas de seguridad para proteger tu información personal contra accesos no autorizados, divulgación o alteración. Utilizamos tecnologías avanzadas como encriptación y autenticación para asegurar la protección de tus datos.</p>
+                
+                  <h3>4. Uso compartido de la información</h3>
+                  <p>No compartimos tu información personal con terceros, salvo en los siguientes casos:</p>
+                  <ul>
+                    <li><strong>Proveedores de servicios:</strong> Utilizamos proveedores externos para facilitar algunos servicios, como el procesamiento de pagos. Estos proveedores solo pueden usar tus datos de acuerdo con nuestras instrucciones.</li>
+                    <li><strong>Cumplimiento de la ley:</strong> Si es necesario para cumplir con las leyes aplicables o para proteger nuestros derechos, podemos compartir tu información con las autoridades competentes.</li>
+                  </ul>
+                
+                  <h3>5. Cookies y tecnologías similares</h3>
+                  <p>Usamos cookies y tecnologías de seguimiento para mejorar tu experiencia en nuestra plataforma. Puedes configurar tu navegador para rechazar las cookies, pero ten en cuenta que esto puede afectar el funcionamiento de nuestros servicios.</p>
+                
+                  <h3>6. Tus derechos</h3>
+                  <p>Tienes derecho a acceder, corregir o eliminar tu información personal en cualquier momento. Si deseas ejercer cualquiera de estos derechos, puedes contactarnos a través de [correo electrónico o número de contacto].</p>
+                
+                  <h3>7. Cambios en las políticas de privacidad</h3>
+                  <p>Nos reservamos el derecho de modificar estas políticas en cualquier momento. Si realizamos cambios importantes, te notificaremos adecuadamente a través de la plataforma o por correo electrónico.</p>
+                
+                  <h3>8. Contacto</h3>
+                  <p>Si tienes alguna pregunta o inquietud sobre estas políticas de privacidad, no dudes en ponerte en contacto con nosotros a través de:</p>
+                  <ul>
+                    <li><strong>Correo electrónico:</strong> emailautomanage@gmail.com</li>
+                    <li><strong>Teléfono:</strong> +57 </li>
+                    <li><strong>Dirección:</strong> cll</li>
+                  </ul>
+                </div>                
               </small>
             </div>
-            <div class="text-muted font-italic"><small>password strength: <span
-                  class="text-success font-weight-700">strong</span></small></div>
-            <div class="row my-4">
-              <div class="col-12">
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <label>
-                    <input type="checkbox" formControlName="agree" title="Agree to terms"> I agree to the <a
-                      href="#">Privacy Policy</a>
-                  </label>
-                  <small *ngIf="registerForm.get('agree')?.invalid && registerForm.get('agree')?.touched"
-                    class="text-danger">
-                    You must accept the terms
-                  </small>
-                </div>
-              </div>
-            </div>
+
+
+
             <div class="text-center">
-              <!-- Botón de envío -->
               <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Create
                 account</button>
-
             </div>
           </form>
         </div>

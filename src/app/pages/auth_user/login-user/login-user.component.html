@@ -78,10 +78,12 @@
       </div>
       <div class="row mt-3">
         <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Olvido su contraseña?</small></a>
+          <a href="javascript:void(0)" class="text-light" (click)="forgotPassword()">
+            <small>¿Olvidó su contraseña?</small>
+          </a>
         </div>
         <div class="col-6 text-right">
-          <a href="javascript:void(0)" class="text-light"><small>Crear cuenta</small></a>
+          <a routerLink="/admin/register" class="text-light"><small>Crear cuenta</small></a>
         </div>
       </div>
     </div>
