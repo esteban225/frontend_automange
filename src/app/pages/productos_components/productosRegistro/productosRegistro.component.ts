@@ -12,14 +12,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./productosRegistro.component.scss']
 })
 export class productosRegistroComponent implements OnInit {
-    // intancia de la clase productos para crear un nuevo producto
-    productos: Productos = new Productos();
+  // intancia de la clase productos para crear un nuevo producto
+  productos: Productos = new Productos();
 
   ngOnInit() {
   }
 
   //inyectamos los servicios de productos en el construnctor
-  constructor(private readonly productoService: ProductosService, private readonly router: Router, ) {
+  constructor(private readonly productoService: ProductosService, private readonly router: Router,) {
 
   }
 
@@ -27,7 +27,7 @@ export class productosRegistroComponent implements OnInit {
 
   guardarProducto() {
 
-    this.productoService.registrarProducto(this.productos).subscribe({ // Llama al servicio de registro y se suscribe a la respuesta
+    this.productoService.registrarProducto(this.productos, this.imagenSeleccionada).subscribe({ // Llama al servicio de registro y se suscribe a la respuesta
       next: (response) => { // Maneja la respuesta exitosa
         console.log('Product registered successfully:', response); // Muestra la respuesta en consola
 
@@ -37,6 +37,8 @@ export class productosRegistroComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'OK'
         });
+
+        this.router.navigate(['/admin/productos']); // Redirige a la lista de productos
       },
       error: (error) => { // Maneja la respuesta en caso de error
         console.error('Registration error:', error); // Muestra el error en consola
@@ -51,5 +53,15 @@ export class productosRegistroComponent implements OnInit {
         this.errorMessage = 'Error registering user. Please try again later.'; // Guarda un mensaje de error en la variable
       }
     });
+  }
+
+  imagenSeleccionada: File | null = null;
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0]; // Obtener el archivo seleccionado
+    if (file) {
+      this.imagenSeleccionada = file;
+      console.log("Imagen seleccionada:", this.imagenSeleccionada);
+    }
   }
 }

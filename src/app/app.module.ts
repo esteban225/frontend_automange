@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -23,7 +24,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [
     AppComponent,

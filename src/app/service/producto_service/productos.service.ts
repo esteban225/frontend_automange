@@ -25,10 +25,14 @@ export class ProductosService {
    * @param productos - Datos del producto a registrar.
    * @returns Observable con la respuesta del servidor.
    */
-  registrarProducto(productos: any): Observable<Productos> {
-    console.log("Producto a registrar:", productos);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.HttpClient.post<Productos>(`${this.baseURL}/register`, productos, { headers });
+  registrarProducto(producto: any, imagen: File): Observable<Productos> {
+    console.log("Producto a registrar:", producto);
+
+    const formData = new FormData();
+    formData.append("productos", JSON.stringify(producto)); // Convertir el producto a JSON
+    formData.append("img", imagen); // Adjuntar la imagen
+
+    return this.HttpClient.post<Productos>(`${this.baseURL}/register`, formData);
   }
 
 

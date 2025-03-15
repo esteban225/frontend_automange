@@ -36,6 +36,7 @@ import { ActualizarUsuarioComponent } from 'src/app/pages/usuarios_component/act
 import { VehiculosComponent } from "../../pages/vehiculos_component/vehiculos/vehiculos.component";
 import { VehiculosRegstroComponent } from 'src/app/pages/vehiculos_component/vehiculos-regstro/vehiculos-regstro.component';
 import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehiculos-editar/vehiculos-editar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehi
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxPaginationModule
   ],
   declarations: [
     DashboardComponent,
