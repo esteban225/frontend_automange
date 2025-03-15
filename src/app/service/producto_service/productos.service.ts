@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Productos } from '../../class/productos_class/productos';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ProductosService {
    * @param productos - Datos del producto a registrar.
    * @returns Observable con la respuesta del servidor.
    */
-  registrarProducto(producto: any, imagen: File): Observable<Productos> {
+  registrarProducto(producto: Productos , imagen: File): Observable<Productos> {
     console.log("Producto a registrar:", producto);
 
     const formData = new FormData();
@@ -36,18 +36,28 @@ export class ProductosService {
   }
 
 
-
-
   //metodo para actualizar productos
-  actualizarProducto(id: number, productos: Productos): Observable<Productos> {
-    return this.HttpClient.put<Productos>(`${this.baseURL}/${id}`, productos);
+  actualizarProducto(id: number, producto: Productos , imagen: File): Observable<Productos> {
+
+    console.log("Producto a actualizar:", producto);
+
+    const formData = new FormData();
+    formData.append("productos", JSON.stringify(producto)); // Convertir el producto a JSON
+    formData.append("img", imagen); // Adjuntar la imagen
+
+    return this.HttpClient.put<Productos>(`${this.baseURL}/${id}`, formData);
   }
 
-  //metodo para obtener o buscar producto por id
   buscarProductoporId(id: number): Observable<Productos> {
-    return this.HttpClient.get<Productos>(`${this.baseURL}/${id}`);
+    return this.HttpClient.get<{ producto: Productos }>(`${this.baseURL}/${id}`).pipe(
+      tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura
+      map(response => response.producto), // ✅ Extrae solo el objeto producto
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        return throwError(() => error);
+      })
+    );
   }
-
   //metodo para eliminar producto
   eliminarProducto(id: number): Observable<object> {
     return this.HttpClient.delete(`${this.baseURL}/${id}`);

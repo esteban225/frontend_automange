@@ -6,8 +6,8 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 // import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 // import { TablesComponent } from '../../pages/tables/tables.component';
 import { ProductosComponent } from 'src/app/pages/productos_components/productos/productos.component';
-import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
-import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
+import { ProductosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
+import { ProductosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
 import { MantenimientoComponent } from 'src/app/pages/mantenimiento_component/mantenimiento/mantenimiento.component';
 import { RegistroMantenimientoComponent } from 'src/app/pages/mantenimiento_component/registro_mantenimiento/registro-mantenimiento.component';
 import { ActualizarMantenimientoComponent } from 'src/app/pages/mantenimiento_component/actualizar_mantenimiento/actualizar-mantenimiento.component';
@@ -32,8 +32,8 @@ export const AdminLayoutRoutes: Routes = [
 
     //rutas nuevas productos
     { path: 'productos', component: ProductosComponent, canActivate:[AuthGuard] },
-    { path: 'productosRegistro', component: productosRegistroComponent, canActivate:[AuthGuard]},
-    { path: 'productosActualizar/:id', component: productosActualizarComponent, canActivate:[AuthGuard] },
+    { path: 'productosRegistro', component: ProductosRegistroComponent, canActivate:[AuthGuard]},
+    { path: 'productosActualizar/:id', component: ProductosActualizarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas mantenimientos
     { path: 'mantenimientos', component: MantenimientoComponent, canActivate:[AuthGuard] },
@@ -47,7 +47,7 @@ export const AdminLayoutRoutes: Routes = [
 
     //rutas nuevas citas
     { path: 'citas', component: CitasComponent, canActivate:[AuthGuard] },
-     { path: 'citasRegistro', component: productosRegistroComponent, canActivate:[AuthGuard] },
+     { path: 'citasRegistro', component: ProductosRegistroComponent, canActivate:[AuthGuard] },
     { path: 'citasAtualizar/:id', component: CitaActualizarComponent, canActivate:[AuthGuard] },
 
     //rutas nuevas usuarios

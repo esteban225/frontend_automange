@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, tap, throwError } from 'rxjs';
 import { Productos } from 'src/app/class/productos_class/productos';
 import { ProductosService } from 'src/app/service/producto_service/productos.service';
 import Swal from 'sweetalert2';
@@ -11,12 +9,11 @@ import Swal from 'sweetalert2';
   templateUrl: './productosRegistro.component.html',
   styleUrls: ['./productosRegistro.component.scss']
 })
-export class productosRegistroComponent implements OnInit {
+export class ProductosRegistroComponent implements OnInit {
   // intancia de la clase productos para crear un nuevo producto
   productos: Productos = new Productos();
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   //inyectamos los servicios de productos en el construnctor
   constructor(private readonly productoService: ProductosService, private readonly router: Router,) {
