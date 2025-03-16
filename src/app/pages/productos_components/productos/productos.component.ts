@@ -46,6 +46,7 @@ export class ProductosComponent implements OnInit {
         return throwError(() => error);
       })
     ).subscribe((response: any) => {
+      console.log("productos servidor:", Response );
       if (response && 'productos' in response && Array.isArray(response.productos)) {
         this.productos = response.productos;
         this.productosFiltrados = response.productos; // Inicializa con todos los productos

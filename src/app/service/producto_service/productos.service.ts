@@ -19,12 +19,7 @@ export class ProductosService {
   }
 
 
-  //metodo para registrar producto
-  /**
-   * Registra un nuevo usuario enviando los datos al backend.
-   * @param productos - Datos del producto a registrar.
-   * @returns Observable con la respuesta del servidor.
-   */
+//metodo para registrar productos
   registrarProducto(producto: Productos , imagen: File): Observable<Productos> {
     console.log("Producto a registrar:", producto);
 
