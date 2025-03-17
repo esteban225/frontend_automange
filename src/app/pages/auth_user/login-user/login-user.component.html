@@ -3,7 +3,7 @@
     <div class="header-body text-center mb-7">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Bienvenido</h1>
+          <h1 class="text-white">Bienvenido!</h1>
           <p class="text-lead text-light">Inicie sesión con sus datos</p>
         </div>
       </div>
@@ -21,7 +21,7 @@
     <div class="col-lg-5 col-md-7">
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+          <div class="text-muted text-center mt-2 mb-3"><small>Ingresar con: </small></div>
           <div class="btn-wrapper text-center">
             <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg" alt="Github icon"></span>
@@ -35,7 +35,7 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
+            <small>O ingresa con tus datos</small>
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
 
@@ -45,10 +45,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" required formControlName="email">
+                <input class="form-control" placeholder="Correo electrónico" type="email" required formControlName="email">
                 <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
                   class="text-danger">
-                  Enter a valid email
+                  Ingresa un correo valido
                 </small>
               </div>
             </div>
@@ -60,12 +60,12 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                <input type="password" class="form-control" placeholder="Contraseña" formControlName="password"
                   >
                 <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
                   class="text-danger">
-                  Password must be at least 8 characters, include a number, an uppercase letter, and a special
-                  character.
+                  La contraseña debe tener al menos 8 caracteres e incluir un número, una letra mayúscula y un carácter
+                  especial.
                 </small>
               </div>
             </div>
@@ -83,7 +83,7 @@
           </a>
         </div>
         <div class="col-6 text-right">
-          <a routerLink="/admin/register" class="text-light"><small>Crear cuenta</small></a>
+          <a routerLink="/register" class="text-light"><small>Crear cuenta</small></a>
         </div>
       </div>
     </div>

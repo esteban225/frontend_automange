@@ -43,12 +43,12 @@
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                 </div>
-                <input class="form-control" placeholder="Name" type="text" required formControlName="name">
+                <input class="form-control" placeholder="Nombre" type="text" required formControlName="name">
                 <small *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
                   class="text-danger">
-                  Name is required (min 3 characters)
+                  El nombre es requerido (minimo 3 caracteres)
                 </small>
               </div>
             </div>
@@ -56,12 +56,13 @@
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                 </div>
-                <input class="form-control" placeholder="UserName" type="text" required formControlName="userName">
+                <input class="form-control" placeholder="Nombre de usuario" type="text" required
+                  formControlName="userName">
                 <small *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched"
                   class="text-danger">
-                  userName is required (min 3 characters)
+                  El nombre del usuario es requerido (minimo 3 caracteres)
                 </small>
               </div>
             </div>
@@ -71,10 +72,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" required formControlName="email">
+                <input class="form-control" placeholder="Correo electrónico" type="email" required
+                  formControlName="email">
                 <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
                   class="text-danger">
-                  Enter a valid email
+                  Ingresa un correo valido.
                 </small>
               </div>
             </div>
@@ -82,12 +84,13 @@
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                  <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
                 </div>
-                <input type="tel" class="form-control" placeholder="Phone Number" formControlName="phone" required>
+                <input type="tel" class="form-control" placeholder="Numero de telefono" formControlName="phone"
+                  required>
                 <small *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
                   class="text-danger">
-                  Enter a valid 10-digit phone number
+                  Debe tener 10 dijitos y no contener letras.
                 </small>
               </div>
             </div>
@@ -95,85 +98,149 @@
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  <span class="input-group-text"><i class="ni ni-square-pin"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                <input type="text" class="form-control" placeholder="Dirección" formControlName="address">
                 <small *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched"
                   class="text-danger">
-                  Address is required
+                  Se requiere ingresar un dirección.
                 </small>
               </div>
             </div>
+
+            <!-- Contraseña -->
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Contraseña" formControlName="password"
+                  (input)="checkPasswordStrength()">
+                <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                  class="text-danger">
+                  La contraseña debe tener al menos 8 caracteres e incluir un número, una letra mayúscula y un carácter
+                  especial.
+                </small>
+              </div>
+              <br>
+              <!-- Confirmar Contraseña -->
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-key-25"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Confirmar contraseña"
+                    formControlName="confirmPassword">
+                  <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched"
+                    class="text-danger">
+                    ¡Las contraseñas no coinciden!
+                  </small>
+                </div>
+              </div>
+
+              <div class="text-muted font-italic">
+                <small>Fuerza de la contraseña: <span
+                    [ngClass]="{'text-success': passwordStrength === 'Fuerte', 'text-danger': passwordStrength === 'Debil'}">{{
+                    passwordStrength }}</span></small>
+              </div>
+            </div>
+
             <!-- Checkbox de aceptación de términos y condiciones -->
             <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="agree" formControlName="agree">
-                <label class="custom-control-label" for="agree">I agree to the <a
-                    (click)="toggleTooltip()">Privacy Policy</a></label>
+                <label class="custom-control-label" for="agree">
+                  Estoy de acuerdo con la
+                  <a (click)="toggleTooltip()">
+                    Politica de privacidad
+                  </a>
+                </label>
               </div>
               <small *ngIf="registerForm.get('agree')?.invalid && registerForm.get('agree')?.touched"
                 class="text-danger">
                 <div class="privacy-policy">
                   <h2>Políticas de Privacidad</h2>
                   <p><strong>Última actualización: 2025</strong></p>
-                
-                  <p>En <strong>Automanage</strong>, valoramos y respetamos tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información personal cuando interactúas con nuestros servicios. Te invitamos a leer detenidamente estos términos para comprender cómo tratamos tus datos.</p>
-                
+
+                  <p>En <strong>Automanage</strong>, valoramos y respetamos tu privacidad. Esta Política de Privacidad
+                    explica cómo recopilamos, usamos y protegemos tu información personal cuando interactúas con
+                    nuestros servicios. Te invitamos a leer detenidamente estos términos para comprender cómo tratamos
+                    tus datos.</p>
+
                   <h3>1. Información que recopilamos</h3>
-                  <p>Recopilamos datos personales cuando te registras en nuestro sistema o interactúas con nuestros servicios. Esta información puede incluir:</p>
+                  <p>Recopilamos datos personales cuando te registras en nuestro sistema o interactúas con nuestros
+                    servicios. Esta información puede incluir:</p>
                   <ul>
-                    <li><strong>Datos personales:</strong> Nombre, dirección de correo electrónico, número de teléfono, dirección, etc.</li>
-                    <li><strong>Datos de uso:</strong> Información sobre cómo interactúas con nuestra plataforma, incluyendo direcciones IP, actividad en la web, etc.</li>
+                    <li><strong>Datos personales:</strong> Nombre, dirección de correo electrónico, número de
+                      teléfono, dirección, etc.</li>
+                    <li><strong>Datos de uso:</strong> Información sobre cómo interactúas con nuestra plataforma,
+                      incluyendo direcciones IP, actividad en la web, etc.</li>
                     <li><strong>Información de pago:</strong> Datos necesarios para procesar pagos, si aplica.</li>
                   </ul>
-                
+
                   <h3>2. Uso de la información</h3>
                   <p>La información que recopilamos se utiliza para los siguientes fines:</p>
                   <ul>
                     <li>Proveer acceso a nuestros servicios y facilitar la gestión de tu cuenta.</li>
                     <li>Personalizar tu experiencia y ofrecerte productos o servicios según tus preferencias.</li>
                     <li>Mejorar nuestras plataformas y servicios con base en tus interacciones y comentarios.</li>
-                    <li>Comunicarnos contigo para informarte sobre actualizaciones, cambios en los términos o promociones especiales.</li>
+                    <li>Comunicarnos contigo para informarte sobre actualizaciones, cambios en los términos o
+                      promociones especiales.</li>
                     <li>Cumplir con obligaciones legales o regulatorias.</li>
                   </ul>
-                
+
                   <h3>3. Protección de tus datos</h3>
-                  <p>Implementamos medidas de seguridad para proteger tu información personal contra accesos no autorizados, divulgación o alteración. Utilizamos tecnologías avanzadas como encriptación y autenticación para asegurar la protección de tus datos.</p>
-                
+                  <p>Implementamos medidas de seguridad para proteger tu información personal contra accesos no
+                    autorizados, divulgación o alteración. Utilizamos tecnologías avanzadas como encriptación y
+                    autenticación para asegurar la protección de tus datos.</p>
+
                   <h3>4. Uso compartido de la información</h3>
                   <p>No compartimos tu información personal con terceros, salvo en los siguientes casos:</p>
                   <ul>
-                    <li><strong>Proveedores de servicios:</strong> Utilizamos proveedores externos para facilitar algunos servicios, como el procesamiento de pagos. Estos proveedores solo pueden usar tus datos de acuerdo con nuestras instrucciones.</li>
-                    <li><strong>Cumplimiento de la ley:</strong> Si es necesario para cumplir con las leyes aplicables o para proteger nuestros derechos, podemos compartir tu información con las autoridades competentes.</li>
+                    <li><strong>Proveedores de servicios:</strong> Utilizamos proveedores externos para facilitar
+                      algunos servicios, como el procesamiento de pagos. Estos proveedores solo pueden usar tus datos
+                      de acuerdo con nuestras instrucciones.</li>
+                    <li><strong>Cumplimiento de la ley:</strong> Si es necesario para cumplir con las leyes aplicables
+                      o para proteger nuestros derechos, podemos compartir tu información con las autoridades
+                      competentes.</li>
                   </ul>
-                
+
                   <h3>5. Cookies y tecnologías similares</h3>
-                  <p>Usamos cookies y tecnologías de seguimiento para mejorar tu experiencia en nuestra plataforma. Puedes configurar tu navegador para rechazar las cookies, pero ten en cuenta que esto puede afectar el funcionamiento de nuestros servicios.</p>
-                
+                  <p>Usamos cookies y tecnologías de seguimiento para mejorar tu experiencia en nuestra plataforma.
+                    Puedes configurar tu navegador para rechazar las cookies, pero ten en cuenta que esto puede
+                    afectar el funcionamiento de nuestros servicios.</p>
+
                   <h3>6. Tus derechos</h3>
-                  <p>Tienes derecho a acceder, corregir o eliminar tu información personal en cualquier momento. Si deseas ejercer cualquiera de estos derechos, puedes contactarnos a través de [correo electrónico o número de contacto].</p>
-                
+                  <p>Tienes derecho a acceder, corregir o eliminar tu información personal en cualquier momento. Si
+                    deseas ejercer cualquiera de estos derechos, puedes contactarnos a través de [correo electrónico o
+                    número de contacto].</p>
+
                   <h3>7. Cambios en las políticas de privacidad</h3>
-                  <p>Nos reservamos el derecho de modificar estas políticas en cualquier momento. Si realizamos cambios importantes, te notificaremos adecuadamente a través de la plataforma o por correo electrónico.</p>
-                
+                  <p>Nos reservamos el derecho de modificar estas políticas en cualquier momento. Si realizamos
+                    cambios importantes, te notificaremos adecuadamente a través de la plataforma o por correo
+                    electrónico.</p>
+
                   <h3>8. Contacto</h3>
-                  <p>Si tienes alguna pregunta o inquietud sobre estas políticas de privacidad, no dudes en ponerte en contacto con nosotros a través de:</p>
+                  <p>Si tienes alguna pregunta o inquietud sobre estas políticas de privacidad, no dudes en ponerte en
+                    contacto con nosotros a través de:</p>
                   <ul>
-                    <li><strong>Correo electrónico:</strong> emailautomanage@gmail.com</li>
+                    <li><strong>Correo electrónico:</strong> emailautomanage&#64;gmail.com</li>
                     <li><strong>Teléfono:</strong> +57 </li>
                     <li><strong>Dirección:</strong> cll</li>
                   </ul>
-                </div>                
+                </div>
               </small>
             </div>
-
-
-
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Create
-                account</button>
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Crear cuenta</button>
             </div>
           </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a routerLink="/login" class="text-light"><small>Inicio de sesión</small></a>
         </div>
       </div>
     </div>

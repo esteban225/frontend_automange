@@ -59,13 +59,13 @@
                 <td>{{ producto?.precio | currency:'COP':'symbol' }}</td>
                 <td>{{ producto?.cantidad }}</td>
                 <td>
-                  <button class="btn btn-success btn-sm" (click)="actualizarProducto(producto.id)">Editar</button>
+                  <button class="btn btn-success btn" (click)="actualizarProducto(producto.id)">Editar</button>
                 </td>
                 <td>
-                  <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto.id)">Eliminar</button>
+                  <button class="btn btn-danger btn" (click)="eliminarProducto(producto.id)">Eliminar</button>
                 </td>
                 <td>
-                  <a routerLink="/admin/productosDetalle" class="btn btn-info btn-sm">Detalles</a>
+                  <a routerLink="/admin/productosDetalle" class="btn btn-info btn">Detalles</a>
                 </td>
               </tr>
             </tbody>

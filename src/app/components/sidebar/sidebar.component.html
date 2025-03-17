@@ -1,7 +1,7 @@
 <nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
   <div class="container-fluid">
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed" title="Toggle navigation"
       aria-controls="sidenav-collapse-main">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,11 +65,11 @@
         <div class="row">
           <div class="col-6 collapse-brand">
             <a routerLinkActive="active" [routerLink]="['/dashboard']">
-              <img src="./assets/img/brand/blue.png">
+              <img src="./assets/img/brand/blue.png" alt="Brand Logo">
             </a>
           </div>
           <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+            <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed" title="Toggle navigation">
               <span></span>
               <span></span>
             </button>
@@ -95,17 +95,18 @@
           <!-- Opción sin submenú -->
           <a *ngIf="!menuItem.children" routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{menuItem.icon}}"></i>
-            {{menuItem.title}}
+            {{menuItem.title}} 
           </a>
-
+        
           <!-- Opción con submenú -->
           <a *ngIf="menuItem.children" class="nav-link" (click)="toggleMenu(menuItem.title)">
             <i class="ni {{menuItem.icon}}"></i>
             {{menuItem.title}}
+            <i class="ml-2 fa" [ngClass]="expandedMenus[menuItem.title] ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
           </a>
-
+        
           <!-- Submenú desplegable -->
-          <ul *ngIf="expandedMenus[menuItem.title]" class="nav flex-column ">
+          <ul *ngIf="expandedMenus[menuItem.title]" class="nav flex-column">
             <li *ngFor="let child of menuItem.children" class="nav-item">
               <a routerLinkActive="active" [routerLink]="[child.path]" class="nav-link">
                 <i class="ni {{child.icon}}"></i>
@@ -113,7 +114,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li>        
       </ul>
 
       <!-- Divider -->
