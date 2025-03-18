@@ -37,14 +37,6 @@
                 name="descripcion" [(ngModel)]="productos.descripcion">
             </div>
           </div>
-          <!-- Input para subir imagen del producto -->
-          <div class="form-group">
-            <div class="custom-file">
-              <input class="custom-file-input" type="file" id="imagen" name="imagen" accept="image/*"
-                (change)="onFileSelected($event)">
-              <label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
-            </div>
-          </div>
           <!-- input precio producto -->
           <div class="form-group">
             <div class="input-group input-group-alternative mb-3">
@@ -65,8 +57,17 @@
                 name="cantidad" [(ngModel)]="productos.cantidad">
             </div>
           </div>
+          <!-- Input para subir imagen del producto -->
+          <div class="form-group">
+            <div class="custom-file">
+              <input class="custom-file-input" type="file" id="imagen" name="imagen" accept="image/*"
+                (change)="onFileSelected($event)">
+              <label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
+            </div>
+          </div>
           <div class="text-center">
-            <button type="button" class="btn btn-primary mt-4 animate-btn" (click)="guardarProducto()">Crear Producto</button>
+            <button type="button" class="btn btn-primary mt-4 animate-btn" (click)="guardarProducto()">Crear
+              Producto</button>
           </div>
         </form>
       </div>
