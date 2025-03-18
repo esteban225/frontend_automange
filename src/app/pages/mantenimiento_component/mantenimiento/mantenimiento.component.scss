@@ -1,0 +1,50 @@
+// Animaciones generales
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Estilo de las tarjetas
+.card-stats {
+    animation: fadeIn 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+// Animación para filas de la tabla
+.table tbody tr {
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transform: scale(1.02);
+    }
+}
+
+// Botones con efecto de clic
+.btn {
+    transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow: none;
+    }
+}
+
+// Descripción truncada con puntos suspensivos
+td.w-10 {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

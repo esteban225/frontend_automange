@@ -18,7 +18,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     children: [
       { path: '/admin/productos', title: 'Lista ', icon: 'ni ni-bullet-list-67 text-orange', class: '' }, 
-      { path: '/admin/productosRegistro', title: 'Registro ', icon: 'ni ni-fat-add text-orange', class: '' },
+      { path: '/admin/productosRegistro', title: 'Registro de productos ', icon: 'ni ni-fat-add text-orange', class: '' },
     ]
   },
   {
@@ -28,7 +28,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     children: [
       { path: '/admin/vehiculos', title: 'Lista ', icon: 'ni ni-bullet-list-67 text-blue', class: '' }, 
-      { path: '/admin/vehiculosRegistro', title: 'Registro ', icon: 'ni ni-fat-add text-orange', class: '' },
+      { path: '/admin/vehiculosRegistro', title: 'Registro vehicular ', icon: 'ni ni-fat-add text-orange', class: '' },
       { path: '/admin/mantenimientos', title: 'Mantenimientos', icon: 'ni ni-settings text-blue', class: '' }, 
       { path: '/admin/citas', title: 'Citas', icon: 'ni ni-calendar-grid-58 text-orange', class: '' }, 
     ]
@@ -40,7 +40,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     children: [
       { path: '/admin/usuarios', title: 'Lista de usuarios', icon: 'ni ni-bullet-list-67 text-yellow', class: '' }, 
-      { path: '/admin/usuariosRegistro', title: 'Crear usuario', icon: 'ni ni-single-02 text-green', class: '' },
+      { path: '/admin/usuariosRegistro', title: 'Registro de usuario', icon: 'ni ni-single-02 text-green', class: '' },
       { path: '/admin/citasRegistro', title: 'Registro de cita', icon: 'ni ni-fat-add text-blue', class: '' }
     ]
   }

@@ -1,1 +1,86 @@
-<p>vehiculos-regstro works!</p>
+<div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="container">
+        <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                    <h1 class="text-white">Registro de Vehiculos</h1>
+                    <p class="text-lead text-light">Use este formulario para registrar un vehiculo nuevo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card form-card">
+                <form>
+                    <!-- input nombre vehiculo -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-tag"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el nombre del vehiculo" type="text"
+                                id="nombre" name="nombre" [(ngModel)]="vehiculos.nombre">
+                        </div>
+                    </div>
+                    <!-- input descripcion vehiculo -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-align-left-2"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese la marca del vehiculo" type="text"
+                                id="marca" name="marca" [(ngModel)]="vehiculos.marca">
+                        </div>
+                    </div>
+                    <!-- input precio vehiculo -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el modelo del vehiculo" type="number"
+                                id="modelo" name="modelo" [(ngModel)]="vehiculos.modelo">
+                        </div>
+                    </div>
+                    <!-- input precio vehiculo -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el cilindraje del vehiculo" type="number"
+                                id="cilindraje" name="cilindraje" [(ngModel)]="vehiculos.cilindraje">
+                        </div>
+                    </div>
+                    <!-- input cantidad vehiculo -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-box-2"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese la placa del vehiculo" type="text"
+                                id="placa" name="placa" [(ngModel)]="vehiculos.placa">
+                        </div>
+                    </div>
+                    <!-- Input para subir imagen del vehiculo -->
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input class="custom-file-input" type="file" id="imagen" name="imagen" accept="image/*"
+                                (change)="onFileSelected($event)">
+                            <label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 animate-btn" (click)="guardarVehiculo()">Crear
+                            Vehiculo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

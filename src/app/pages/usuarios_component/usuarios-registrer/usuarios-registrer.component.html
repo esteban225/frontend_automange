@@ -1,86 +1,134 @@
-<div class="header bg-gradient-danger py-7 py-lg-8">
-    <div class="container">
-      <div class="header-body text-center mb-7">
-        <div class="row justify-content-center">
-          <div class="col-lg-5 col-md-6">
-            <h1 class="text-white">Bienvenido!</h1>
-            <p class="text-lead text-light">Use este formulario para crear un producto nuevo</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="separator separator-bottom separator-skew zindex-100">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-  </div>
-  <!-- Page content -->
-  <div class="container mt--8 pb-5">
-    <!-- Table -->
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8">
-        <div class="card bg-secondary shadow border-0">
-          <div class="card-header bg-transparent pb-5">
-            <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-            <div class="text-center">
-              <a href="javascript:void(0)" class="btn btn-neutral btn-icon mr-4">
-                <span class="btn-inner--icon"><img src="assets/img/icons/common/github.svg"></span>
-                <span class="btn-inner--text">Github</span>
-              </a>
-              <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon"><img src="assets/img/icons/common/google.svg"></span>
-                <span class="btn-inner--text">Google</span>
-              </a>
-            </div>
-          </div>
-          <div class="card-body px-lg-5 py-lg-5">
-            <div class="text-center text-muted mb-4">
-              <small>Or sign up with credentials</small>
-            </div>
-            <form role="form">
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Name" type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Email" type="email">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Password" type="password">
-                </div>
-              </div>
-              <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
-              <div class="row my-4">
-                <div class="col-12">
-                  <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                    <label class="custom-control-label" for="customCheckRegister">
-                      <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="button" class="btn btn-primary mt-4">Create account</button>
-              </div>
-            </form>
-          </div>
+<div class="header bg-gradient-primary py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Registro de Productos</h1>
+          <p class="text-lead text-light">Use este formulario para crear un producto nuevo</p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card form-card">
+
+
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+          <!-- Nombre -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+              </div>
+              <input class="form-control" placeholder="Nombre" type="text" required formControlName="name">
+              <small *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger">
+                El nombre es requerido (minimo 3 caracteres)
+              </small>
+            </div>
+          </div>
+          <!-- userName -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+              </div>
+              <input class="form-control" placeholder="Nombre de usuario" type="text" required
+                formControlName="userName">
+              <small *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched"
+                class="text-danger">
+                El nombre del usuario es requerido (minimo 3 caracteres)
+              </small>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+              </div>
+              <input class="form-control" placeholder="Correo electrónico" type="email" required
+                formControlName="email">
+              <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                class="text-danger">
+                Ingresa un correo valido.
+              </small>
+            </div>
+          </div>
+          <!-- Phone -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+              </div>
+              <input type="tel" class="form-control" placeholder="Numero de telefono" formControlName="phone" required>
+              <small *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+                class="text-danger">
+                Debe tener 10 dijitos y no contener letras.
+              </small>
+            </div>
+          </div>
+          <!-- Dirección -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-square-pin"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Dirección" formControlName="address">
+              <small *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched"
+                class="text-danger">
+                Se requiere ingresar un dirección.
+              </small>
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Contraseña" formControlName="password"
+                (input)="checkPasswordStrength()">
+              <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                class="text-danger">
+                La contraseña debe tener al menos 8 caracteres e incluir un número, una letra mayúscula y un carácter
+                especial.
+              </small>
+            </div>
+            <br>
+            <!-- Confirmar Contraseña -->
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-key-25"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Confirmar contraseña"
+                  formControlName="confirmPassword">
+                <small *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched"
+                  class="text-danger">
+                  ¡Las contraseñas no coinciden!
+                </small>
+              </div>
+            </div>
+            <div class="text-muted font-italic">
+              <small>Fuerza de la contraseña: <span
+                  [ngClass]="{'text-success': passwordStrength === 'Fuerte', 'text-danger': passwordStrength === 'Debil'}">{{
+                  passwordStrength }}</span></small>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Crear cuenta</button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
