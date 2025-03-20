@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -12,12 +12,11 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
 
 //importes de nuevos componentes
 import { ProductosComponent } from "../../pages/productos_components/productos/productos.component";
-import { productosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
-import { productosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
+import { ProductosRegistroComponent } from 'src/app/pages/productos_components/productosRegistro/productosRegistro.component';
+import { ProductosActualizarComponent } from 'src/app/pages/productos_components/productosActualizar/productosActualizar.component';
 
 import { CitasComponent } from "../../pages/citas_component/citas/citas.component";
 import { CitaActualizarComponent } from 'src/app/pages/citas_component/cita-actualizar/cita-actualizar.component';
@@ -36,6 +35,7 @@ import { ActualizarUsuarioComponent } from 'src/app/pages/usuarios_component/act
 import { VehiculosComponent } from "../../pages/vehiculos_component/vehiculos/vehiculos.component";
 import { VehiculosRegstroComponent } from 'src/app/pages/vehiculos_component/vehiculos-regstro/vehiculos-regstro.component';
 import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehiculos-editar/vehiculos-editar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -44,7 +44,8 @@ import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehi
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxPaginationModule
   ],
   declarations: [
     DashboardComponent,
@@ -53,8 +54,8 @@ import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehi
     IconsComponent,
     MapsComponent,
     ProductosComponent,
-    productosRegistroComponent,
-    productosActualizarComponent,
+    ProductosRegistroComponent,
+    ProductosActualizarComponent,
     UsuariosComponent,
     UsuariosRegistrerComponent,
     ActualizarUsuarioComponent,

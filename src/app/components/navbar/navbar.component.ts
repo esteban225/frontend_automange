@@ -12,25 +12,41 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  constructor(location: Location,  private readonly element: ElementRef, private readonly router: Router) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
-  getTitle(){
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if(titlee.charAt(0) === '#'){
-        titlee = titlee.slice( 1 );
+  getTitle() {
+    // Obtén la ruta actual procesada
+    let titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.startsWith('#')) {
+      titlee = titlee.slice(1); // Elimina el '#' si existe
     }
-
-    for(var item = 0; item < this.listTitles.length; item++){
-        if(this.listTitles[item].path === titlee){
-            return this.listTitles[item].title;
+  
+    // Lógica para buscar recursivamente en las rutas, incluyendo hijos
+    const findTitle = (routes) => {
+      for (let route of routes) {
+        // Si la ruta tiene hijos, buscar en ellos
+        if (route.children && route.children.length > 0) {
+          const childTitle = findTitle(route.children);
+          if (childTitle) return childTitle;
         }
-    }
-    return 'Dashboard';
+        // Comparar la ruta actual con la propiedad `path`
+        if (route.path === titlee) {
+          return route.title;
+        }
+      }
+      return null; // Si no se encuentra en esta iteración
+    };
+  
+    // Buscar el título en la lista de rutas
+    const title = findTitle(ROUTES);
+  
+    // Si no se encuentra un título, retornar el predeterminado
+    return title || 'Dashboard';
   }
 
   CerrarSesion(){

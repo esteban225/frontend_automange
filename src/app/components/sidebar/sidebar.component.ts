@@ -14,42 +14,37 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '',
     title: 'Productos',
-    icon: 'ni ni-cart text-orange',
+    icon: 'ni ni-box-2 text-orange', 
     class: '',
     children: [
-      { path: '/admin/productos', title: 'Lista de Productos', icon: 'ni ni-cart text-orange', class: '' },
-      { path: '/admin/productosRegistro', title: 'Registro de Productos', icon: 'ni ni-cart text-orange', class: '' },
+      { path: '/admin/productos', title: 'Lista ', icon: 'ni ni-bullet-list-67 text-orange', class: '' }, 
+      { path: '/admin/productosRegistro', title: 'Registro ', icon: 'ni ni-fat-add text-orange', class: '' },
     ]
   },
   {
     path: '',
     title: 'Vehículos',
-    icon: 'ni ni-bus-front-12 text-blue',
+    icon: 'ni ni-delivery-fast text-blue', 
     class: '',
     children: [
-      { path: '/admin/vehiculos', title: 'Lista de Vehículos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: '/admin/mantenimientos', title: 'Mantenimientos', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-      { path: '/admin/vehiculosAtualizar/:id', title: 'Actualizar vehículo', icon: ' ni ni-bus-front-12 text-blue', class: '' },
-
+      { path: '/admin/vehiculos', title: 'Lista ', icon: 'ni ni-bullet-list-67 text-blue', class: '' }, 
+      { path: '/admin/vehiculosRegistro', title: 'Registro ', icon: 'ni ni-fat-add text-orange', class: '' },
+      { path: '/admin/mantenimientos', title: 'Mantenimientos', icon: 'ni ni-settings text-blue', class: '' }, 
+      { path: '/admin/citas', title: 'Citas', icon: 'ni ni-calendar-grid-58 text-orange', class: '' }, 
     ]
   },
   {
     path: '',
     title: 'Usuarios',
-    icon: 'ni ni-single-02 text-yellow',
+    icon: 'ni ni-circle-08 text-yellow', 
     class: '',
     children: [
-      { path: '/admin/usuarios', title: 'Lista de usuarios', icon: ' ni ni-single-02 text-orange', class: '' },
-      { path: '/admin/usuariosRegistro', title: 'Crear usuario', icon: ' ni ni-single-02 text-blue', class: '' },
-      { path: '/admin/citas', title: 'citas', icon: ' ni ni-single-02 text-orange', class: '' },
-      { path: '/admin/citasRegistro', title: 'Registro de cita', icon: ' ni ni-single-02 text-blue', class: '' },
-      { path: '/admin/citasAtualizar/:id', title: 'Atualizar Cita', icon: ' ni ni-single-02 text-red', class: '' },
+      { path: '/admin/usuarios', title: 'Lista de usuarios', icon: 'ni ni-bullet-list-67 text-yellow', class: '' }, 
+      { path: '/admin/usuariosRegistro', title: 'Crear usuario', icon: 'ni ni-single-02 text-green', class: '' },
+      { path: '/admin/citasRegistro', title: 'Registro de cita', icon: 'ni ni-fat-add text-blue', class: '' }
     ]
   }
-
-
-
-
+  
   // { path: '/dashboard', title: 'Administrador', icon: 'ni-tv-2 text-primary', class: '' },
   // { path: '/icons', title: 'Icons', icon: 'ni-planet text-blue', class: '' },
   // { path: '/maps', title: 'Maps', icon: 'ni-pin-3 text-orange', class: '' },
@@ -88,6 +83,16 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleMenu(title: string) {
-    this.expandedMenus[title] = !this.expandedMenus[title];
+
+    if (this.expandedMenus[title]) {
+      this.expandedMenus[title] = false;
+    } else {
+
+      Object.keys(this.expandedMenus).forEach(key => {
+        this.expandedMenus[key] = false;
+      });
+      this.expandedMenus[title] = true;
+    }
   }
+  
 }

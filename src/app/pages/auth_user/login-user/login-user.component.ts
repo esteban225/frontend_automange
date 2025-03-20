@@ -79,4 +79,46 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
       });
     }
   }
+
+
+
+  forgotPassword() {
+    Swal.fire({
+      title: 'Recuperar Contraseña',
+      text: 'Ingresa tu correo electrónico para recibir instrucciones',
+      input: 'email',
+      inputPlaceholder: 'ejemplo@correo.com',
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      cancelButtonText: 'Cancelar',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'El correo es obligatorio';
+        }
+      }
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        const email = result.value;
+  
+        this.authUserRegisretService.forgotPassword(email).subscribe({
+          next: () => {
+            Swal.fire({
+              title: 'Correo enviado',
+              text: 'Si el correo es válido, recibirás un enlace para restablecer tu contraseña.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          },
+          error: () => {
+            Swal.fire({
+              title: 'Error',
+              text: 'No se pudo enviar el correo. Verifica la dirección ingresada.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        });
+      }
+    });
+  }  
 }
