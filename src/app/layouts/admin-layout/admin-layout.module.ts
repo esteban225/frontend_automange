@@ -36,6 +36,9 @@ import { VehiculosComponent } from "../../pages/vehiculos_component/vehiculos/ve
 import { VehiculosRegstroComponent } from 'src/app/pages/vehiculos_component/vehiculos-regstro/vehiculos-regstro.component';
 import { VehiculosEditarComponent } from 'src/app/pages/vehiculos_component/vehiculos-editar/vehiculos-editar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductosDetallesComponent } from 'src/app/pages/productos_components/productos-detalles/productos-detalles.component';
+import { VehiculosDetallesComponent } from 'src/app/pages/vehiculos_component/vehiculos-detalles/vehiculos-detalles.component';
+import { DetallesUsuariosComponent } from 'src/app/pages/usuarios_component/detalles-usuarios/detalles-usuarios.component';
 
 @NgModule({
   imports: [
@@ -57,9 +60,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProductosComponent,
     ProductosRegistroComponent,
     ProductosActualizarComponent,
+    ProductosDetallesComponent,
     UsuariosComponent,
     UsuariosRegistrerComponent,
     ActualizarUsuarioComponent,
+    DetallesUsuariosComponent,
     CitasComponent,
     CitaActualizarComponent,
     MantenimientoComponent,
@@ -67,7 +72,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ActualizarMantenimientoComponent,
     VehiculosComponent,
     VehiculosRegstroComponent,
-    VehiculosEditarComponent
+    VehiculosEditarComponent,
+    VehiculosDetallesComponent
   ]
 })
 

@@ -12,9 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class UsuariosComponent implements OnInit {
 
-usuarios: Usuarios[] = []; // Lista original de productos
+  usuarios: Usuarios[] = []; // Lista original de productos
   usuariosFiltrados: Usuarios[] = []; // Lista filtrada para mostrar en la tabla
-  filtroPlaca: string = ''; // Texto ingresado en el buscador
+  filtronombre: string = ''; // Texto ingresado en el buscador
   page: number = 1; // Página actual de la paginación
 
   estadisticas = [
@@ -33,8 +33,58 @@ usuarios: Usuarios[] = []; // Lista original de productos
     this.obtenerUsuarios();
   }
 
+
+
+  tipoes: string[] = ['Administrador', 'Usuario', 'Operador'];
+  cambiarRol(usuario: Usuarios) {
+    this.usuariosService.actualizarRol(usuario.id, usuario.tipo).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Rol actualizado',
+          text: `El rol de ${usuario.nombre} se actualizó correctamente.`,
+          timer: 1500,
+          showConfirmButton: false
+        });
+      },
+      error => {
+        console.error('Error al actualizar el rol:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo actualizar el rol. Intenta nuevamente.',
+        });
+      }
+    );
+  }
+  
+  toggleEstado(usuario: Usuarios) {
+    usuario.activo = !usuario.activo;
+    this.usuariosService.actualizarEstado(usuario.id, usuario.activo).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: usuario.activo ? 'Usuario activado' : 'Usuario desactivado',
+          text: `El estado de ${usuario.nombre} se actualizó correctamente.`,
+          timer: 1500,
+          showConfirmButton: false
+        });
+      },
+      error => {
+        console.error('Error al actualizar el estado:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo actualizar el estado. Intenta nuevamente.',
+        });
+      }
+    );
+  }
+  
+  
+
   private obtenerUsuarios(): void {
-    this.usuariosService.obtenerListaOUsuarios().pipe(
+    this.usuariosService.getUsuarios().pipe(
       catchError(error => {
         console.error('Error al obtener Usuarios:', error);
         Swal.fire({
@@ -61,12 +111,16 @@ usuarios: Usuarios[] = []; // Lista original de productos
 
   filtrarUsuarios(): void {
     this.usuariosFiltrados = this.usuarios.filter(vehiculo =>
-      vehiculo.nombre.toLowerCase().includes(this.filtroPlaca.toLowerCase())
+      vehiculo.nombre.toLowerCase().includes(this.filtronombre.toLowerCase())
     );
   }
 
   actualizarUsuarios(id: number) {
     this.router.navigate(['/admin/usuariosActualizar', id]);
+  }
+
+  detallesUsuarios(id: number) {
+    this.router.navigate(['/admin/usuariosDetalles', id]);
   }
 
   eliminarUsuarios(id: number) {

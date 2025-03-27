@@ -68,6 +68,10 @@ export class VehiculosComponent implements OnInit {
     this.router.navigate(['/admin/vehiculosActualizar', id]);
   }
 
+  detallesVehiculos(id: number) {
+    this.router.navigate(['/admin/vehiculosDetalles', id]);
+  }
+
   eliminarVehiculos(id: number) {
     Swal.fire({
       title: '¿Estás seguro?',

@@ -70,6 +70,10 @@ export class ProductosComponent implements OnInit {
     this.router.navigate(['/admin/productosActualizar', id]);
   }
 
+  detallesProducto(id: number) {
+    this.router.navigate(['/admin/productosDetalles', id]);
+  }
+
   eliminarProducto(id: number) {
     Swal.fire({
       title: '¿Estás seguro?',

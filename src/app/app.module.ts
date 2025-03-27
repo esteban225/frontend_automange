@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DetallesMantenimientoComponent } from './pages/mantenimiento_component/detalles-mantenimiento/detalles-mantenimiento.component';
+
+
 
 
 
@@ -29,7 +32,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   declarations: [
     AppComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    DetallesMantenimientoComponent,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
