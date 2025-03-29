@@ -77,7 +77,7 @@
                             <tbody>
                                 <tr *ngFor="let mantenimiento of mantenimientosFiltrados | paginate:{itemsPerPage:10, currentPage: page}">
                                     <td>{{ mantenimiento.fechaMante }}</td>
-                                    <td>{{ mantenimiento.tipo || mantenimiento.caracteristrica }}</td>
+                                    <td>{{ mantenimiento.nombre }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info" (click)="urlMantenimientoDetalle(mantenimiento.id)">
                                             Ver Detalles

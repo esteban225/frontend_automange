@@ -32,10 +32,10 @@ export class MantenimientosService {
 
   //metodo para actualizar Mantenimiento
   actualizarMantenimiento(id: number, Mantenimiento: Mantenimiento, imagen: File): Observable<Mantenimiento> {
-    console.log("Mantenimiento a actualizar:", Mantenimiento);
+    console.log("mantenimiento a actualizar:", Mantenimiento);
 
     const formData = new FormData();
-    formData.append("Mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
+    formData.append("mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
 
     return this.HttpClient.put<Mantenimiento>(`${this.baseURL}/${id}`, formData);
@@ -43,9 +43,8 @@ export class MantenimientosService {
 
   //metodo para obtener o buscar Mantenimiento por id
   buscarMantenimientoId(id: number): Observable<Mantenimiento> {
-    return this.HttpClient.get<{ Mantenimiento: Mantenimiento }>(`${this.baseURL}/${id}`).pipe(
-      tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura
-      map(response => response.Mantenimiento), // ✅ Extrae solo el objeto producto
+    return this.HttpClient.get< Mantenimiento >(`${this.baseURL}/${id}`).pipe(
+      tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura // ✅ Extrae solo el objeto producto
       catchError(error => {
         console.error('Error en la solicitud:', error);
         return throwError(() => error);

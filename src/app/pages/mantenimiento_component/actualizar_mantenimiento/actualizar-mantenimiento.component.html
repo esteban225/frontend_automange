@@ -1,1 +1,91 @@
-<p>actualizar-mantenimiento works!</p>
+<div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="container">
+        <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                    <h1 class="text-white">Actualización de mantenimiento</h1>
+                    <p class="text-lead text-light">Use este formulario para actualizar un mantenimiento</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card form-card">
+                <form>
+                    <!-- input nombre mantenimiento -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-tag"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el nombre del mantenimiento" type="text"
+                                id="nombre" name="nombre" [(ngModel)]="mantenimientos.nombre">
+                        </div>
+                    </div>
+                    <!-- input descripcion mantenimiento -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-align-left-2"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese la caracteristrica del mantenimiento"
+                                type="text" id="caracteristrica" name="caracteristrica"
+                                [(ngModel)]="mantenimientos.caracteristrica">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el fechaMante del mantenimiento"
+                                type="date" id="fechaMante" name="fechaMante" [(ngModel)]="mantenimientos.fechaMante">
+                        </div>
+                    </div>
+                    <!-- input precio mantenimiento -->
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Ingrese el precio del mantenimiento" type="number"
+                                id="precio" name="precio" [(ngModel)]="mantenimientos.precio">
+                        </div>
+                    </div>
+                    <!-- Input para subir imagen del mantenimiento -->
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input class="custom-file-input" type="file" id="imagen" name="imagen" accept="image/*"
+                                (change)="onFileSelected($event)">
+                            <label class="custom-file-label" for="imagen">Seleccionar Imagen</label>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 animate-btn"
+                            (click)="actualizarmantenimiento()">Actualizar
+                            mantenimiento</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+  export class Mantenimiento {
+    id: number;
+    nombre: string;
+    caracteristrica: string;
+    fechaMante: string;
+    imagen: string;
+    precio: number;
+    vehiculoId: number;
+}
+
+  -->
