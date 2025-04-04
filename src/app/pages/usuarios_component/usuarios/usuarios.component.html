@@ -38,7 +38,8 @@
       <div class="card shadow">
         <div class="card-header border-0 d-flex justify-content-between align-items-center">
           <h3 class="mb-0">Tabla de usuarios</h3>
-          <input type="text" class="form-control w-25" placeholder="Buscar usuario..." [(ngModel)]="filtronombre" (input)="filtrarUsuarios()" />
+          <input type="text" class="form-control w-25" placeholder="Buscar usuario..."
+            aria-label="Buscar por nombre de usuario" [(ngModel)]="filtronombre" (input)="filtrarUsuarios()" />
         </div>
 
         <div class="table-responsive">
@@ -47,7 +48,7 @@
               <tr>
                 <th class="w-10">Nombre</th>
                 <th>Teléfono</th>
-                <th>Rol</th>
+                <th>Email</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
@@ -57,14 +58,13 @@
                 <td class="w-10">{{ usuario?.nombre }}</td>
                 <td>{{ usuario?.telefono }}</td>
                 <td>
-                  <select class="form-control" [(ngModel)]="usuario.rol" (change)="cambiarRol(usuario)" title="Seleccionar rol">
-                    <option *ngFor="let rol of roles" [value]="rol">{{ rol }}</option>
-                  </select>
+                  {{ usuario?.email }}
                 </td>
                 <td>
                   <label class="custom-toggle" for="estado-{{ usuario.id }}">
                     <label for="estado-{{ usuario.id }}" class="sr-only">Estado de {{ usuario.nombre }}</label>
-                    <input id="estado-{{ usuario.id }}" type="checkbox" [checked]="usuario.activo" (change)="toggleEstado(usuario)">
+                    <input id="estado-{{ usuario.id }}" type="checkbox" [checked]="usuario.activo"
+                      (change)="toggleEstado(usuario)">
                     <span class="custom-toggle-slider rounded-circle"></span>
                   </label>
                 </td>

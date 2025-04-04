@@ -9,4 +9,5 @@ export class Usuarios {
     imagen:string;
     password:string;
     activo:boolean;
+  usuario: any;
 }

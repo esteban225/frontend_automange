@@ -1,98 +1,65 @@
-<div
-
-class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
-    <!-- Mask -->
-    <span class="mask bg-primary"
-    ></span>
-    <!-- Header container -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="height: 50vh;">
+    <span class="mask bg-primary"></span>
     <div class="container-fluid d-flex align-items-center">
         <div class="row">
             <div class="col-lg-7 col-md-10">
-                <h1 class="display-2 text-white">Detalles del mantenimiento</h1>
-                <p class="text-white mt-0 mb-5">Aquí puedes ver la información detallada del mantenimiento seleccionado.</p>
+                <h1 class="display-2 text-ligth">Detalles del mantenimiento</h1>
+                <p class="text-ligth mt-0 mb-5">
+                    Aquí puedes ver la información detallada del mantenimiento seleccionado.
+                </p>
             </div>
         </div>
     </div>
 </div>
+
 <div class="container-fluid mt--7">
     <div class="row">
+        <!-- Carrusel con una sola imagen -->
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow span-4">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="javascript:void(0)">
-                                <img src="{{mantenimiento.imagen}}" class="rounded-circle  img-fluid" alt="mantenimiento" title="Imagen del mantenimiento" >
-                            </a>
+            <div class="card shadow">
+                <div id="carouselMantenimiento" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img [src]="mantenimiento.imagen" class="d-block w-100 rounded" alt="Mantenimiento" />
                         </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0 pt-md-4">
-                    <div class="text-center">
-                        <h3>{{ mantenimiento.nombre }}</h3>
-                        <div class="h5 mt-4">
-                            <i class="ni business_briefcase-24 mr-2"></i>Categoría: Repuesto automotriz
-                        </div>
-                        <div>
-                            <i class="ni education_hat mr-2"></i>Marca: EjemploBrand
-                        </div>
-                        <hr class="my-4" />
-                        <p>{{mantenimiento.caracteristrica}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Información del mantenimiento en tabla -->
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">Información del mantenimiento</h3>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <h6 class="heading-small text-muted mb-4">Especificaciones</h6>
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="precio">Precio</label>
-                                    <p id="precio">{{ mantenimiento.precio | currency:'COP':'symbol' }}</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="disponibilidad">Disponibilidad</label>
-                                    <p id="disponibilidad"> En stock</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="peso">Peso</label>
-                                    <p id="peso">1.5 kg</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="dimensiones">Dimensiones</label>
-                                    <p id="dimensiones">20cm x 15cm x 10cm</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td>{{mantenimiento.nombre}}</td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <td>{{ mantenimiento.fechaMante}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <td>{{ mantenimiento.caracteristrica }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Precio</th>
+                                    <td>{{ mantenimiento.precio | currency: 'COP' : 'symbol' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <hr class="my-4" />
-                    <h6 class="heading-small text-muted mb-4">Descripción</h6>
-                    <div class="pl-lg-4">
-                        <p>{{mantenimiento.caracteristrica}}</p>
-                    </div>
-
-                    <button class="btn btn-sm btn-primary" (click)="editarMantenimiento(mantenimiento.id)"> Editar</button>
+                    <br>
+                    <button class="btn btn-sm btn-primary"
+                        (click)="editarMantenimiento(mantenimiento.id)">Editar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, magni. Possimus distinctio dolor dolore rerum laboriosam magni aspernatur placeat. Commodi at quidem ullam nostrum repellendus natus aspernatur cumque enim similique.</div>-->

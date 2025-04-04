@@ -1,55 +1,62 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
-    <!-- Mask -->
+<!-- Encabezado -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center header-height" style="height: 50vh;">
     <span class="mask bg-gradient-primary opacity-8"></span>
-    <!-- Header container -->
     <div class="container-fluid d-flex align-items-center">
         <div class="row">
             <div class="col-lg-7 col-md-10">
-                <h1 class="display-2 text-white">Detalles del Vehículo</h1>
-                <p class="text-white mt-0 mb-5">Aquí puedes ver la información detallada del vehículo seleccionado.</p>
+                <h1 class="display-2 text-ligth">Detalles del Vehículo</h1>
+                <p class="text-ligth mt-0 mb-5">
+                    Aquí puedes ver la información detallada del vehículo seleccionado.
+                </p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Contenido -->
 <div class="container-fluid mt--7">
     <div class="row">
+        <!-- Columna lateral: Imagen + Características -->
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="javascript:void(0)">
-                                <img src="{{vehiculo.imagen}}" class="rounded-circle" alt="Vehículo"
-                                    title="Imagen del vehículo">
-                            </a>
+            <!-- Carrusel con una sola imagen -->
+            <div class="card shadow mb-4">
+                <div id="carouselVehiculo" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img [src]="vehiculo.imagen" class="d-block w-100 rounded" alt="Vehículo" />
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Información del vehículo -->
+            <div class="card card-profile shadow">
                 <div class="card-body pt-0 pt-md-4">
                     <div class="text-center">
                         <h3>Características del Vehículo</h3>
                         <div>
-                            <i class="ni education_hat mr-2"></i>Marca: {{ vehiculo.marca }}
+                            <strong>Marca:</strong> {{ vehiculo.marca }}
                         </div>
                         <div>
-                            <i class="ni education_hat mr-2"></i>Nombre del modelo: {{ vehiculo.nombre }}
+                            <strong>Modelo:</strong> {{ vehiculo.nombre }}
                         </div>
                         <div>
-                            <i class="ni education_hat mr-2"></i>Año: {{ vehiculo.modelo }}
+                            <strong>Año:</strong> {{ vehiculo.modelo }}
                         </div>
                         <div>
-                            <i class="ni location_pin mr-2"></i>Placa: {{ vehiculo.placa }}
+                            <strong>Placa:</strong> {{ vehiculo.placa }}
                         </div>
                         <hr class="my-4" />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, expedita dicta
-                            suscipit accusantium deleniti consequuntur minima consequatur vitae, delectus, facilis est.
-                            Reprehenderit minus ipsa deserunt alias in commodi aliquam excepturi.</p>
+                        <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, expedita dicta
+                            suscipit accusantium...
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Historial de mantenimiento -->
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header bg-white border-0">
@@ -57,17 +64,18 @@
                         <div class="col-8">
                             <h3 class="mb-0">Historial de Mantenimiento</h3>
                         </div>
-                        <div class="col-4 text-right">
-                            <button class="btn btn-sm btn-success" (click)="urlMantenimientoSave()">Agregar
-                                Mantenimiento</button>
+                        <div class="col-4 text-end">
+                            <button class="btn btn-sm btn-success" (click)="urlMantenimientoSave()">
+                                Agregar Mantenimiento
+                            </button>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body">
-                    <h6 class="heading-small text-muted mb-4">Detalles de Mantenimientos</h6>
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
+                            <thead class="thead-light">
                                 <tr>
                                     <th>Fecha</th>
                                     <th>Tipo de Mantenimiento</th>
@@ -75,17 +83,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let mantenimiento of mantenimientosFiltrados | paginate:{itemsPerPage:10, currentPage: page}">
+                                <tr
+                                    *ngFor="let mantenimiento of mantenimientosFiltrados | paginate: { itemsPerPage: 5, currentPage: page }">
                                     <td>{{ mantenimiento.fechaMante }}</td>
                                     <td>{{ mantenimiento.nombre }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info" (click)="urlMantenimientoDetalle(mantenimiento.id)">
+                                        <button class="btn btn-sm btn-info"
+                                            (click)="urlMantenimientoDetalle(mantenimiento.id)">
                                             Ver Detalles
                                         </button>
                                     </td>
                                 </tr>
                                 <tr *ngIf="mantenimientosFiltrados.length === 0">
-                                    <td colspan="3" class="text-center">No hay mantenimientos registrados.</td>
+                                    <td colspan="3" class="text-center text-muted">No hay mantenimientos registrados.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

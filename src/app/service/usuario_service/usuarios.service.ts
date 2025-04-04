@@ -28,7 +28,7 @@ export class UsuariosService {
 
   //metodo para obtener o buscar producto por id
   buscarUsuariosporId(id: number): Observable<Usuarios> {
-    return this.HttpClient.get<Usuarios>(`${this.baseURL}/${id}`);
+    return this.HttpClient.get<Usuarios>(`${this.baseURL}/getId/${id}`);
   }
 
   //metodo para eliminar producto
@@ -43,8 +43,5 @@ export class UsuariosService {
   actualizarEstado(id: number, estado: boolean): Observable<object> {
     return this.HttpClient.put(`${this.baseURL}/estado/${id}`, { activo: estado });
   }
-  
-  
-  
 }
 

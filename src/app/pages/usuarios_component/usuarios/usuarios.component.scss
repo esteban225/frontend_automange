@@ -23,11 +23,10 @@
 
 // Animación para filas de la tabla
 .table tbody tr {
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out, transform 0.2s ease-in-out;
 
     &:hover {
         background-color: rgba(0, 123, 255, 0.1);
-        transform: scale(1.02);
     }
 }
 
