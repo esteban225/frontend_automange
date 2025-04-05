@@ -2,14 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthUserRegisretService {
 
-  private readonly apiUrl = 'http://localhost:13880/api/auth';  // URL del servidor
+  private readonly apiUrl =  environment.apiUrl;  // URL del servidor
 
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
@@ -21,11 +22,11 @@ export class AuthUserRegisretService {
    */
   register(userData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.apiUrl}/register`, userData, { headers });
+    return this.http.post(`${this.apiUrl}/api/auth/register`, userData, { headers });
   }
 
   login(userData: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, userData);
+    return this.http.post(`${this.apiUrl}/api/auth/login`, userData);
   }
   
   isLoggedIn(): boolean {
@@ -39,7 +40,7 @@ export class AuthUserRegisretService {
   }
 
   forgotPassword(email: string) {
-    return this.http.post(`${this.apiUrl}/forgot-password`, { email }, { responseType: 'text' }).pipe(
+    return this.http.post(`${this.apiUrl}/api/auth/forgot-password`, { email }, { responseType: 'text' }).pipe(
       catchError(error => {
         console.error('Error en forgot-password:', error);
         return throwError(() => new Error('Error al enviar la solicitud de restablecimiento.'));
@@ -48,7 +49,7 @@ export class AuthUserRegisretService {
   }
 
   resetPassword(token: string, newPassword: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reset-password`, { token, newPassword }, { responseType: 'text' }).pipe(
+    return this.http.post(`${this.apiUrl}/api/auth/reset-password`, { token, newPassword }, { responseType: 'text' }).pipe(
       catchError(error => {
         console.error('Error en resetPassword:', error);
         return throwError(() => new Error('No se pudo restablecer la contraseña.'));

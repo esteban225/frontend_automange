@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { Client, Message } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
   private client!: Client;
-  private estadisticasSubject = new Subject<any>();
-  private readonly websocketUrl = 'http://localhost:13880/ws'; // 🔹 Cambia 4200 por 8080 (backend)
+  private readonly estadisticasSubject = new Subject<any>();
+
+  // ✅ Usamos la URL desde environment
+  private readonly websocketUrl = environment.websocketUrl;
 
   constructor() {
     this.connect();
@@ -18,20 +21,20 @@ export class WebsocketService {
   private connect(): void {
     this.client = new Client({
       webSocketFactory: () => new SockJS(this.websocketUrl),
-      debug: (str) => console.log(`WebSocket Debug: ${str}`),
-      reconnectDelay: 5000, // 🔹 Intenta reconectar en 5s si se desconecta
-      onConnect: (frame) => {
-        console.log("✅ Conectado al WebSocket", frame);
+      debug: (str) => console.log(`🧩 WebSocket Debug: ${str}`),
+      reconnectDelay: 5000,
+      onConnect: () => {
+        console.log('✅ WebSocket conectado');
         this.subscribeToTopics();
       },
       onStompError: (frame) => {
-        console.error("❌ Error en STOMP:", frame);
+        console.error('❌ STOMP error:', frame.headers['message'], frame.body);
       },
       onWebSocketClose: () => {
-        console.warn("⚠️ Conexión WebSocket cerrada. Intentando reconectar...");
+        console.warn('⚠️ WebSocket cerrado. Intentando reconectar...');
       },
       onDisconnect: () => {
-        console.warn("⚠️ Desconectado del WebSocket.");
+        console.warn('⚠️ WebSocket desconectado.');
       }
     });
 
@@ -39,14 +42,12 @@ export class WebsocketService {
   }
 
   private subscribeToTopics(): void {
-    if (this.client.connected) {
-      this.client.subscribe('/topic/estadisticas', (message: Message) => {
-        console.log("📩 Mensaje recibido:", message.body);
-        this.estadisticasSubject.next(JSON.parse(message.body));
-      });
-    } else {
-      console.error("❌ Error: Intento de suscripción sin conexión activa.");
-    }
+    // No necesitas comprobar client.connected, STOMP se encarga
+    this.client.subscribe('/topic/estadisticas', (message: Message) => {
+      const payload = JSON.parse(message.body);
+      console.log('📥 Mensaje recibido en /topic/estadisticas:', payload);
+      this.estadisticasSubject.next(payload);
+    });
   }
 
   getEstadisticas(): Observable<any> {
@@ -54,9 +55,9 @@ export class WebsocketService {
   }
 
   disconnect(): void {
-    if (this.client && this.client.active) {
+    if (this.client?.active) {
       this.client.deactivate();
-      console.log("🚫 WebSocket desconectado manualmente.");
+      console.log('🚫 WebSocket desconectado manualmente.');
     }
   }
 }
