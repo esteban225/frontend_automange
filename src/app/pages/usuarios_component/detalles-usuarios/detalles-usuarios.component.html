@@ -1,0 +1,83 @@
+<!-- Header -->
+<header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center bg-cover bg-center user-header" style="height: 50vh;">
+    <span class="mask bg-gradient-primary opacity-8"></span>
+    <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+            <div class="col-lg-7 col-md-10">
+                <h1 class="display-2 text-white">Detalles del Usuario</h1>
+                <p class="text-white mt-0 mb-5">Aquí puedes ver la información detallada del usuario y sus órdenes de compra.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Contenido principal -->
+<main class="container-fluid mt--7">
+    <div class="row g-4">
+
+        <!-- Perfil de Usuario -->
+        <div class="col-xl-4 order-xl-2">
+            <div class="card card-profile shadow-sm rounded-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 order-lg-2">
+                        <div class="card-profile-image">
+                            <a href="#">
+                                <img src="" class="rounded-circle shadow" alt="Usuario" title="Imagen del usuario">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="text-center mt-5">
+                        <h3 class="fw-bold">Nombre del Usuario</h3>
+                        <p class="h6 mt-3 text-muted"><i class="ni business_briefcase-24 me-2"></i>Correo: {{usuario.email}}</p>
+                        <p class="text-muted"><i class="ni education_hat me-2"></i>Teléfono: {{usuario.telefono}}</p>
+                        <hr class="my-4" />
+                        <p class="text-sm text-muted">Información adicional del usuario y sus preferencias de compra.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Órdenes de Compra -->
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow-sm rounded-3">
+                <div class="card-header bg-white border-0">
+                    <h3 class="mb-0">Órdenes de Compra</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-items-center table-striped">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">ID Orden</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio Total</th>
+                                    <th scope="col">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>Producto A</td>
+                                    <td>2</td>
+                                    <td>$199.99</td>
+                                    <td>2025-03-20</td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>Producto B</td>
+                                    <td>1</td>
+                                    <td>$99.99</td>
+                                    <td>2025-03-22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

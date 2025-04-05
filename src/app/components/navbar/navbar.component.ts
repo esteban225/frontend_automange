@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
     const title = findTitle(ROUTES);
   
     // Si no se encuentra un título, retornar el predeterminado
-    return title || 'Dashboard';
+    return title || 'Administrador';
   }
 
   CerrarSesion(){

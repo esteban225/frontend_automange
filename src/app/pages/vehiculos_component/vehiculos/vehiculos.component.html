@@ -38,7 +38,7 @@
         <div class="card shadow">
           <div class="card-header border-0 d-flex justify-content-between align-items-center">
             <h3 class="mb-0">Tabla de vehiculos</h3>
-            <input type="text" class="form-control w-25" placeholder="Buscar producto..." [(ngModel)]="filtroPlaca" (input)="filtrarVehiculos()" />
+            <input type="text" class="form-control w-25" placeholder="Buscar por placa..." [(ngModel)]="filtroPlaca" (input)="filtrarVehiculos()" />
           </div>
   
           <div class="table-responsive">
@@ -63,7 +63,7 @@
                     <button class="btn btn-danger btn" (click)="eliminarVehiculos(vehiculo.id)">Eliminar</button>
                   </td>
                   <td>
-                    <a routerLink="/admin/productosDetalle" class="btn btn-info btn">Detalles</a>
+                    <button class="btn btn-info btn" (click)="detallesVehiculos(vehiculo.id)">Detalles</button>
                   </td>
                 </tr>
               </tbody>

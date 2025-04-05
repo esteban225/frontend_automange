@@ -12,8 +12,8 @@ export class UsuariosService {
 
 
   //metodo para obtener los productos del la apiRest
-  obtenerListaOUsuarios(): Observable<Usuarios[]> {
-    return this.HttpClient.get<Usuarios[]>(`${this.baseURL}`);
+  getUsuarios(): Observable<Usuarios[]> {
+    return this.HttpClient.get<Usuarios[]>(`${this.baseURL}/detalles`);
   }
 
   //metodo para registrar producto
@@ -28,12 +28,20 @@ export class UsuariosService {
 
   //metodo para obtener o buscar producto por id
   buscarUsuariosporId(id: number): Observable<Usuarios> {
-    return this.HttpClient.get<Usuarios>(`${this.baseURL}/${id}`);
+    return this.HttpClient.get<Usuarios>(`${this.baseURL}/getId/${id}`);
   }
 
   //metodo para eliminar producto
   eliminarUsuarios(id: number): Observable<object> {
     return this.HttpClient.delete(`${this.baseURL}/${id}`);
+  }
+
+  actualizarRol(id: number, nuevoRol: string) {
+    return this.HttpClient.put(`${this.baseURL}/rol/${id}`, { rol: nuevoRol });
+  }
+  
+  actualizarEstado(id: number, estado: boolean): Observable<object> {
+    return this.HttpClient.put(`${this.baseURL}/estado/${id}`, { activo: estado });
   }
 }
 

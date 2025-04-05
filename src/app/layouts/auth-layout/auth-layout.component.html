@@ -1,5 +1,6 @@
 <div class="main-content">
-  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+  <!-- Navbar superior -->
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-primary">
     <div class="container px-4">
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']">
         <img src="assets/img/brand/argon-white.png" alt="Brand Logo" />
@@ -27,12 +28,6 @@
         </div>
         <!-- Navbar items -->
         <ul class="navbar-nav ml-auto">
-          <!--<li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
-              <i class="ni ni-planet"></i>
-              <span class="nav-link-inner--text">Dashboard</span>
-            </a>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']">
               <i class="ni ni-circle-08"></i>
@@ -45,16 +40,54 @@
               <span class="nav-link-inner--text">Inicio de sesión</span>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user-profile']">
-              <i class="ni ni-single-02"></i>
-              <span class="nav-link-inner--text">Profile</span>
-            </a>
-          </li> -->
         </ul>
       </div>
     </div>
   </nav>
+<br><br><br><br><br>
+  <section class="hero-section">
+    <div class="container text-center">
+      <h2 class="title">Bienvenido a <span class="highlight">AutoManage Pro</span></h2>
+      <p class="subtitle">
+        Somos una empresa dedicada a optimizar la gestión de talleres automotrices mediante soluciones tecnológicas innovadoras.
+        Brindamos herramientas para organizar la agenda de mantenimientos, registrar vehículos, manejar nóminas e inventarios, y mejorar la comunicación con los clientes.
+      </p>
+    </div>
+  </section>
+  
+  <section class="features-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <h5 class="feature-title">Misión</h5>
+            <p class="feature-text">
+              Transformar talleres mecánicos en negocios eficientes mediante el uso de software especializado.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <h5 class="feature-title">Visión</h5>
+            <p class="feature-text">
+              Ser la plataforma líder en gestión automotriz en Colombia y Latinoamérica para 2030.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <h5 class="feature-title">Valores</h5>
+            <p class="feature-text">
+              Innovación, responsabilidad, calidad y atención centrada en el cliente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Página dinámica -->
   <router-outlet></router-outlet>
 </div>
 
@@ -71,19 +104,16 @@
       <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
           <li class="nav-item">
-            <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank" rel="noopener">Creative
-              Tim</a>
+            <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank" rel="noopener">Creative Tim</a>
           </li>
           <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation?ref=ada-footer-auth-layout" class="nav-link" rel="noopener"
-              target="_blank">About Us</a>
+            <a href="https://www.creative-tim.com/presentation?ref=ada-footer-auth-layout" class="nav-link" rel="noopener" target="_blank">About Us</a>
           </li>
           <li class="nav-item">
             <a href="http://blog.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank" rel="noopener">Blog</a>
           </li>
           <li class="nav-item">
-            <a href="https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md" rel="noopener"
-              class="nav-link" target="_blank">MIT License</a>
+            <a href="https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md" rel="noopener" class="nav-link" target="_blank">MIT License</a>
           </li>
         </ul>
       </div>

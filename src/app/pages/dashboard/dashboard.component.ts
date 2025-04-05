@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   clicked: boolean = false;
   clicked1: boolean = false;
 
-  constructor(private websocketService: WebsocketService) {}
+  constructor(private readonly websocketService: WebsocketService) {}
 
   ngOnInit(): void {
     this.websocketService.getEstadisticas().subscribe({

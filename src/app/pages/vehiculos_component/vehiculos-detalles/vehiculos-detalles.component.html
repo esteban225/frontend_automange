@@ -1,0 +1,109 @@
+<!-- Encabezado -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center header-height" style="height: 50vh;">
+    <span class="mask bg-gradient-primary opacity-8"></span>
+    <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+            <div class="col-lg-7 col-md-10">
+                <h1 class="display-2 text-ligth">Detalles del Vehículo</h1>
+                <p class="text-ligth mt-0 mb-5">
+                    Aquí puedes ver la información detallada del vehículo seleccionado.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contenido -->
+<div class="container-fluid mt--7">
+    <div class="row">
+        <!-- Columna lateral: Imagen + Características -->
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <!-- Carrusel con una sola imagen -->
+            <div class="card shadow mb-4">
+                <div id="carouselVehiculo" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img [src]="vehiculo.imagen" class="d-block w-100 rounded" alt="Vehículo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información del vehículo -->
+            <div class="card card-profile shadow">
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="text-center">
+                        <h3>Características del Vehículo</h3>
+                        <div>
+                            <strong>Marca:</strong> {{ vehiculo.marca }}
+                        </div>
+                        <div>
+                            <strong>Modelo:</strong> {{ vehiculo.nombre }}
+                        </div>
+                        <div>
+                            <strong>Año:</strong> {{ vehiculo.modelo }}
+                        </div>
+                        <div>
+                            <strong>Placa:</strong> {{ vehiculo.placa }}
+                        </div>
+                        <hr class="my-4" />
+                        <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, expedita dicta
+                            suscipit accusantium...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial de mantenimiento -->
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Historial de Mantenimiento</h3>
+                        </div>
+                        <div class="col-4 text-end">
+                            <button class="btn btn-sm btn-success" (click)="urlMantenimientoSave()">
+                                Agregar Mantenimiento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo de Mantenimiento</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let mantenimiento of mantenimientosFiltrados | paginate: { itemsPerPage: 5, currentPage: page }">
+                                    <td>{{ mantenimiento.fechaMante }}</td>
+                                    <td>{{ mantenimiento.nombre }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info"
+                                            (click)="urlMantenimientoDetalle(mantenimiento.id)">
+                                            Ver Detalles
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="mantenimientosFiltrados.length === 0">
+                                    <td colspan="3" class="text-center text-muted">No hay mantenimientos registrados.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

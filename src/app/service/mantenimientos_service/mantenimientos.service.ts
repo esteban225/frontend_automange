@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Mantenimiento } from 'src/app/class/mantenimineto_class/mantenimiento';
 
 @Injectable({
@@ -8,31 +8,51 @@ import { Mantenimiento } from 'src/app/class/mantenimineto_class/mantenimiento';
 })
 export class MantenimientosService {
 
-  private readonly baseURL = "http://localhost:13880/api/mantenimientos";
+  private readonly baseURL = "http://localhost:13880/api/registroMante";
   constructor(private readonly HttpClient: HttpClient) { }
 
 
-  //metodo para obtener los mantenimiento del la apiRest
-  obtenerListaMantenimiento(): Observable<Mantenimiento[]> {
+ //metodo para obtener los Mantenimiento del la apiRest
+  getMantenimiento(): Observable<Mantenimiento[]> {
     return this.HttpClient.get<Mantenimiento[]>(`${this.baseURL}`);
   }
 
-  //metodo para registrar mantenimiento
-  registrarMantenimiento(mantenimiento: Mantenimiento): Observable<object> {
-    return this.HttpClient.post(`${this.baseURL}`, mantenimiento);
+
+
+  //metodo para registrar Mantenimiento
+  registrarMantenimiento(Mantenimiento: Mantenimiento, imagen: File): Observable<Mantenimiento> {
+    console.log("Mantenimiento a registrar:", Mantenimiento);
+
+    const formData = new FormData();
+    formData.append("mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
+    formData.append("img", imagen); // Adjuntar la imagen
+
+    return this.HttpClient.post<Mantenimiento>(`${this.baseURL}/register`, formData);
   }
 
-  //metodo para actualizar mantenimiento
-  actualizarMantenimiento(id: number, mantenimiento: Mantenimiento): Observable<object> {
-    return this.HttpClient.put(`${this.baseURL}/${id}`, mantenimiento);
+  //metodo para actualizar Mantenimiento
+  actualizarMantenimiento(id: number, Mantenimiento: Mantenimiento, imagen: File): Observable<Mantenimiento> {
+    console.log("mantenimiento a actualizar:", Mantenimiento);
+
+    const formData = new FormData();
+    formData.append("mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
+    formData.append("img", imagen); // Adjuntar la imagen
+
+    return this.HttpClient.put<Mantenimiento>(`${this.baseURL}/${id}`, formData);
   }
 
-  //metodo para obtener o buscar mantenimiento por id
+  //metodo para obtener o buscar Mantenimiento por id
   buscarMantenimientoId(id: number): Observable<Mantenimiento> {
-    return this.HttpClient.get<Mantenimiento>(`${this.baseURL}/${id}`);
+    return this.HttpClient.get< Mantenimiento >(`${this.baseURL}/${id}`).pipe(
+      tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura // ✅ Extrae solo el objeto producto
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
-  //metodo para eliminar mantenimiento
+  //metodo para eliminar Mantenimiento
   eliminarMantenimiento(id: number): Observable<object> {
     return this.HttpClient.delete(`${this.baseURL}/${id}`);
   }

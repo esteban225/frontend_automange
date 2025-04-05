@@ -1,10 +1,11 @@
 export class Mantenimiento {
-    id: number=0;
-    fechaMante: string ="";
-    nombre: string ="";
-    caracteristrica: string ="";
-    imagen: string ="";
-    precio: number =0;
+    id: number;
+    nombre: string;
+    caracteristrica: string;
+    fechaMante: string;
+    imagen: string;
+    precio: number;
+    vehiculoId: number;
 }
 
 
