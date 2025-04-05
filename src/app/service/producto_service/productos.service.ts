@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Productos } from '../../class/productos_class/productos';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,13 @@ import { Productos } from '../../class/productos_class/productos';
 export class ProductosService {
 
 
-  private readonly baseURL = "http://localhost:13880/api/productos";
+  private readonly baseURL = environment.apiUrl;  // URL del servidor;
   constructor(private readonly HttpClient: HttpClient) { }
 
 
   //metodo para obtener los productos del la apiRest
   getProductos(): Observable<Productos[]> {
-    return this.HttpClient.get<Productos[]>(`${this.baseURL}`);
+    return this.HttpClient.get<Productos[]>(`${this.baseURL}/api/productos`);
   }
 
 
@@ -27,7 +28,7 @@ export class ProductosService {
     formData.append("productos", JSON.stringify(producto)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
 
-    return this.HttpClient.post<Productos>(`${this.baseURL}/register`, formData);
+    return this.HttpClient.post<Productos>(`${this.baseURL}/api/productos/register`, formData);
   }
 
 
@@ -40,11 +41,11 @@ export class ProductosService {
     formData.append("productos", JSON.stringify(producto)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
 
-    return this.HttpClient.put<Productos>(`${this.baseURL}/${id}`, formData);
+    return this.HttpClient.put<Productos>(`${this.baseURL}/api/productos/${id}`, formData);
   }
 
   buscarProductoporId(id: number): Observable<Productos> {
-    return this.HttpClient.get<{ producto: Productos }>(`${this.baseURL}/${id}`).pipe(
+    return this.HttpClient.get<{ producto: Productos }>(`${this.baseURL}/api/productos/${id}`).pipe(
       tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura
       map(response => response.producto), // ✅ Extrae solo el objeto producto
       catchError(error => {
@@ -55,7 +56,7 @@ export class ProductosService {
   }
   //metodo para eliminar producto
   eliminarProducto(id: number): Observable<object> {
-    return this.HttpClient.delete(`${this.baseURL}/${id}`);
+    return this.HttpClient.delete(`${this.baseURL}/api/productos/${id}`);
   }
 }
 

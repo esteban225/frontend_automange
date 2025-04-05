@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Mantenimiento } from 'src/app/class/mantenimineto_class/mantenimiento';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MantenimientosService {
 
-  private readonly baseURL = "http://localhost:13880/api/registroMante";
+  private readonly baseURL = environment.apiUrl; // URL del servidor
   constructor(private readonly HttpClient: HttpClient) { }
 
 
  //metodo para obtener los Mantenimiento del la apiRest
   getMantenimiento(): Observable<Mantenimiento[]> {
-    return this.HttpClient.get<Mantenimiento[]>(`${this.baseURL}`);
+    return this.HttpClient.get<Mantenimiento[]>(`${this.baseURL}/api/registroMante`);
   }
 
 
@@ -27,7 +28,7 @@ export class MantenimientosService {
     formData.append("mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
 
-    return this.HttpClient.post<Mantenimiento>(`${this.baseURL}/register`, formData);
+    return this.HttpClient.post<Mantenimiento>(`${this.baseURL}/api/registroMante/register`, formData);
   }
 
   //metodo para actualizar Mantenimiento
@@ -38,12 +39,12 @@ export class MantenimientosService {
     formData.append("mantenimiento", JSON.stringify(Mantenimiento)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
 
-    return this.HttpClient.put<Mantenimiento>(`${this.baseURL}/${id}`, formData);
+    return this.HttpClient.put<Mantenimiento>(`${this.baseURL}/api/registroMante/${id}`, formData);
   }
 
   //metodo para obtener o buscar Mantenimiento por id
   buscarMantenimientoId(id: number): Observable<Mantenimiento> {
-    return this.HttpClient.get< Mantenimiento >(`${this.baseURL}/${id}`).pipe(
+    return this.HttpClient.get< Mantenimiento >(`${this.baseURL}/api/registroMante/${id}`).pipe(
       tap(response => console.log('Respuesta del backend:', response)), // ✅ Verifica estructura // ✅ Extrae solo el objeto producto
       catchError(error => {
         console.error('Error en la solicitud:', error);
@@ -54,6 +55,6 @@ export class MantenimientosService {
 
   //metodo para eliminar Mantenimiento
   eliminarMantenimiento(id: number): Observable<object> {
-    return this.HttpClient.delete(`${this.baseURL}/${id}`);
+    return this.HttpClient.delete(`${this.baseURL}/api/registroMante/${id}`);
   }
 }
