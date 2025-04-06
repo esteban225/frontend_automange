@@ -7,7 +7,7 @@
     </button>
     <!-- Brand -->
     <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
-      <img src="./assets/img/theme/angular.jpg" class="navbar-brand-img" alt="...">
+      <img src="./assets/img/brand/automanage.png" class="navbar-brand-img" alt="...">
     </a>
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
@@ -16,17 +16,19 @@
           <i class="ni ni-bell-55"></i>
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-          <a class="dropdown-item" href="javascript:void(0)">Action</a>
-          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+          <a class="dropdown-item" href="javascript:void(0)">Acción</a>
+          <a class="dropdown-item" href="javascript:void(0)">
+            Otra acción</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+          <a class="dropdown-item" href="javascript:void(0)">
+            Algo más aquí</a>
         </div>
       </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+              <img alt="Placeholder" src="./assets/img/brand/favicon.png">
             </span>
           </div>
         </a>
@@ -51,7 +53,7 @@
             <span>Soporte</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
+          <a href="#!" (click)="CerrarSesion()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Salir</span>
           </a>
@@ -65,7 +67,7 @@
         <div class="row">
           <div class="col-6 collapse-brand">
             <a routerLinkActive="active" [routerLink]="['/dashboard']">
-              <img src="./assets/img/brand/blue.png" alt="Brand Logo">
+              <img src="./assets/img/brand/automanage.png" alt="Brand Logo">
             </a>
           </div>
           <div class="col-6 collapse-close">
@@ -89,22 +91,22 @@
         </div>
       </form>
       <!-- Navigation -->
-      <ul class="navbar-nav"> 
+      <ul class="navbar-nav">
         <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
 
           <!-- Opción sin submenú -->
           <a *ngIf="!menuItem.children" routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{menuItem.icon}}"></i>
-            {{menuItem.title}} 
+            {{menuItem.title}}
           </a>
-        
+
           <!-- Opción con submenú -->
           <a *ngIf="menuItem.children" class="nav-link" (click)="toggleMenu(menuItem.title)">
             <i class="ni {{menuItem.icon}}"></i>
             {{menuItem.title}}
             <i class="ml-2 fa" [ngClass]="expandedMenus[menuItem.title] ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
           </a>
-        
+
           <!-- Submenú desplegable -->
           <ul *ngIf="expandedMenus[menuItem.title]" class="nav flex-column">
             <li *ngFor="let child of menuItem.children" class="nav-item">
@@ -114,7 +116,7 @@
               </a>
             </li>
           </ul>
-        </li>        
+        </li>
       </ul>
 
       <!-- Divider -->

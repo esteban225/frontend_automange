@@ -95,4 +95,9 @@ export class SidebarComponent implements OnInit {
     }
   }
   
+
+  CerrarSesion(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }
