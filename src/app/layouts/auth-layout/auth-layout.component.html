@@ -3,7 +3,7 @@
   <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-primary">
     <div class="container px-4">
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']">
-        <img src="assets/img/brand/argon-white.png" alt="Brand Logo" />
+        <img src="assets/img/brand/automanage.png" alt="Brand Logo" />
       </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed" title="Toggle navigation"
         aria-controls="sidenav-collapse-main">
@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a routerLinkActive="active" [routerLink]="['/dashboard']">
-                <img src="assets/img/brand/blue.png" alt="Brand Logo">
+                <img src="assets/img/brand/automanage.png" alt="Brand Logo">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -44,48 +44,6 @@
       </div>
     </div>
   </nav>
-<br><br><br><br>
-  <section class="hero-section">
-    <div class="container text-center">
-      <h2 class="title">Bienvenido a <span class="highlight">AutoManage Pro</span></h2>
-      <p class="subtitle">
-        Somos una empresa dedicada a optimizar la gestión de talleres automotrices mediante soluciones tecnológicas innovadoras.
-        Brindamos herramientas para organizar la agenda de mantenimientos, registrar vehículos, manejar nóminas e inventarios, y mejorar la comunicación con los clientes.
-      </p>
-    </div>
-  </section>
-  
-  <section class="features-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card feature-card">
-            <h5 class="feature-title">Misión</h5>
-            <p class="feature-text">
-              Transformar talleres mecánicos en negocios eficientes mediante el uso de software especializado.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card feature-card">
-            <h5 class="feature-title">Visión</h5>
-            <p class="feature-text">
-              Ser la plataforma líder en gestión automotriz en Colombia y Latinoamérica para 2030.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card feature-card">
-            <h5 class="feature-title">Valores</h5>
-            <p class="feature-text">
-              Innovación, responsabilidad, calidad y atención centrada en el cliente.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
 
   <!-- Página dinámica -->
   <router-outlet></router-outlet>
