@@ -46,13 +46,25 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
             console.warn('No se recibió token en la respuesta'); // Mensaje de advertencia si no se recibe el token
           } 
 
+          const role = this.authUserRegisretService.getUserRole();
+
+          switch (role) {
+            case 'ADMIN':
+              this.router.navigate(['/admin/dashboard']);
+              break;
+            case 'USER':
+              this.router.navigate(['/user/dashboard']);
+              break;
+            default:
+              this.router.navigate(['/']); // o alguna ruta por defecto
+          }
+
           Swal.fire({ // Muestra una alerta de éxito en la interfaz
             title: '¡Inicio de sesión exitoso!',
             text: 'Bienvenido al sistema.',
             icon: 'success',
             confirmButtonText: 'OK'
           });
-          this.router.navigate(['/admin/dashboard']);
         },
         error: (error) => { // Maneja la respuesta en caso de error
           console.error('Login error:', error); // Muestra el error en consola
