@@ -31,13 +31,16 @@ export class AuthUserRegisretService {
   
   getUserRole(): string {
     const token = localStorage.getItem('token');
-    if (!token) return '';
+    if (!token) {
+      console.log("no hay token en el localStorage"); // Si no hay token, registra un mensaje
+      return ''; // Retorna vacío
+    }
     
     try {
       const base64Payload = token.split('.')[1];
       const jsonPayload = atob(base64Payload); // decodifica de base64
       const payload = JSON.parse(jsonPayload);
-      return payload.role || ''; // retorna el rol si existe
+      return payload.roles || ''; // retorna el rol si existe
     } catch (e) {
       console.error('Error decoding token', e);
       return '';
