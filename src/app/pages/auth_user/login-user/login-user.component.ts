@@ -48,6 +48,7 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
 
           const role = this.authUserRegisretService.getUserRole();
 
+          console.log('Rol del usuario:', role); // Muestra el rol del usuario en consola
           switch (role) {
             case 'ROLE_ADMIN':
               this.router.navigate(['/admin/dashboard']);
