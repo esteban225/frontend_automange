@@ -49,13 +49,13 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
           const role = this.authUserRegisretService.getUserRole();
 
           switch (role) {
-            case 'ADMIN':
+            case 'ROLE_ADMIN':
               this.router.navigate(['/admin/dashboard']);
               break;
-            case 'USER':
+            case 'ROLE_USER':
               this.router.navigate(['/user/dashboard']);
               break;
-            default:
+            default:  // Si el rol no coincide con ninguno de los anteriores, redirige a la ruta por defecto
               this.router.navigate(['/']); // o alguna ruta por defecto
           }
 
