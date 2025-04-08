@@ -32,10 +32,18 @@ export class AuthUserRegisretService {
   getUserRole(): string {
     const token = localStorage.getItem('token');
     if (!token) return '';
-    const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf-8'));
-    return payload.role; // Asegúrate de que el backend incluya el rol en el token
+    
+    try {
+      const base64Payload = token.split('.')[1];
+      const jsonPayload = atob(base64Payload); // decodifica de base64
+      const payload = JSON.parse(jsonPayload);
+      return payload.role || ''; // retorna el rol si existe
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return '';
+    }
   }
-
+  
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token'); // Obtiene el token del almacenamiento local
     return !!token; // Retorna verdadero si el token existe
