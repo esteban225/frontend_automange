@@ -63,7 +63,7 @@ export class AuthUserRegisretService {
         console.error('Error en forgot-password:', error);
         return throwError(() => new Error('Error al enviar la solicitud de restablecimiento.'));
       })
-    );;
+    );
   }
 
   resetPassword(token: string, newPassword: string): Observable<any> {
