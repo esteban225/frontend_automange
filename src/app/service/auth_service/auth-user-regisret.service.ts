@@ -31,21 +31,28 @@ export class AuthUserRegisretService {
   
   getUserRole(): string {
     const token = localStorage.getItem('token');
-    if (!token) {
-      console.log("no hay token en el localStorage"); // Si no hay token, registra un mensaje
-      return ''; // Retorna vacío
-    }
+    if (!token) return '';
     
     try {
       const base64Payload = token.split('.')[1];
-      const jsonPayload = atob(base64Payload); // decodifica de base64
+      const jsonPayload = atob(base64Payload);
       const payload = JSON.parse(jsonPayload);
-      return payload.roles || ''; // retorna el rol si existe
+  
+      // Aquí accedes a 'roles', que es un array
+      const roles = payload.roles;
+  
+      // Asegúrate de que es un array y toma el primero (o ajusta según tu lógica)
+      if (Array.isArray(roles) && roles.length > 0) {
+        return roles[0]; // Ejemplo: "ROLE_ADMIN"
+      }
+  
+      return '';
     } catch (e) {
       console.error('Error decoding token', e);
       return '';
     }
   }
+  
   
   isLoggedIn(): boolean {
     const token = localStorage.getItem('token'); // Obtiene el token del almacenamiento local
