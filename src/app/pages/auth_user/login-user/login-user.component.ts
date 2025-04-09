@@ -53,8 +53,13 @@ export class LoginUserComponent implements OnInit {
     }
 
     const role = this.authUserRegisretService.getUserRole();
-    this.redirectUserByRole(role);
 
+    // Si el usuario no tiene acceso, detenemos aquí
+    if (!this.redirectUserByRole(role)) {
+      return;
+    }
+
+    // Solo se muestra si el usuario fue redirigido correctamente
     Swal.fire({
       title: '¡Inicio de sesión exitoso!',
       text: 'Bienvenido al sistema.',
@@ -76,16 +81,23 @@ export class LoginUserComponent implements OnInit {
     this.errorMessage = 'Error al iniciar sesión. Verifica tus credenciales.';
   }
 
-  private redirectUserByRole(role: string): void {
+  /**
+   * Redirige según el rol del usuario.
+   * @returns boolean - true si el acceso fue permitido, false si fue denegado.
+   */
+  private redirectUserByRole(role: string): boolean {
     switch (role) {
       case 'ROLE_ADMIN':
         this.router.navigate(['/admin/dashboard']);
-        break;
+        return true;
+
       case 'ROLE_USER':
         this.showAccessDeniedAlert();
-        break;
+        return false;
+
       default:
         this.router.navigate(['/']);
+        return true;
     }
   }
 
