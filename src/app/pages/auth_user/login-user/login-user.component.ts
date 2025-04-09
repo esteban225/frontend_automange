@@ -31,7 +31,7 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
   submitForm() { // Método que se ejecuta cuando el usuario envía el formulario
     if (this.loginForm.valid) { // Verifica si el formulario es válido
       const userData = { // Obtiene los datos ingresados en el formulario
-        email: this.loginForm.value.email, 
+        email: this.loginForm.value.email,
         password: this.loginForm.value.password
       };
 
@@ -44,7 +44,7 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
             console.log('Token guardado'); // Muestra el token en consola
           } else {
             console.warn('No se recibió token en la respuesta'); // Mensaje de advertencia si no se recibe el token
-          } 
+          }
 
           const role = this.authUserRegisretService.getUserRole();
 
@@ -53,11 +53,14 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
             case 'ROLE_ADMIN':
               this.router.navigate(['/admin/dashboard']);
               break;
+
             case 'ROLE_USER':
-              this.router.navigate(['/user/dashboard']);
+              this.showAccessDeniedAlert();
               break;
-            default:  // Si el rol no coincide con ninguno de los anteriores, redirige a la ruta por defecto
-              this.router.navigate(['/']); // o alguna ruta por defecto
+
+            default:
+              this.router.navigate(['/']);
+              break;
           }
 
           Swal.fire({ // Muestra una alerta de éxito en la interfaz
@@ -93,6 +96,15 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
     }
   }
 
+  // Método separado para mostrar la alerta
+  private showAccessDeniedAlert(): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Acceso Denegado',
+      text: 'No tienes permiso para acceder a esta sección.',
+      footer: '<p>Actualmente tienes un rol de usuario. Esta función aún está en desarrollo. ¡Gracias por tu comprensión!</p>'
+    });
+  }
 
 
   forgotPassword() {
@@ -112,7 +124,7 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
     }).then((result) => {
       if (result.isConfirmed && result.value) {
         const email = result.value;
-  
+
         this.authUserRegisretService.forgotPassword(email).subscribe({
           next: () => {
             Swal.fire({
@@ -133,5 +145,5 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
         });
       }
     });
-  }  
+  }
 }
