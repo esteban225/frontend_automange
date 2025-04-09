@@ -1,102 +1,103 @@
-import { Component, OnInit } from '@angular/core'; // Importa Component y OnInit para definir el componente y gestionar su ciclo de vida
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importa herramientas para manejar formularios reactivos en Angular
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthUserRegisretService } from 'src/app/service/auth_service/auth-user-regisret.service'; // Importa el servicio de autenticación
-import Swal from 'sweetalert2'; // Importa SweetAlert2 para mostrar alertas personalizadas
+import { AuthUserRegisretService } from 'src/app/service/auth_service/auth-user-regisret.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login-user', // Define el selector del componente para usarlo en el HTML
-  templateUrl: './login-user.component.html', // Especifica el archivo HTML asociado al componente
-  styleUrls: ['./login-user.component.scss'] // Especifica el archivo de estilos CSS del componente
+  selector: 'app-login-user',
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.scss']
 })
-export class LoginUserComponent implements OnInit { // Declara la clase del componente e implementa OnInit para inicializarlo
+export class LoginUserComponent implements OnInit {
 
-  loginForm: FormGroup; // Define el formulario reactivo para el inicio de sesión
-  errorMessage: string = ''; // Variable para almacenar mensajes de error
-
-  ngOnInit(): void { // Método que se ejecuta cuando el componente se inicializa
-  }
+  loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
-    private readonly fb: FormBuilder, // Inyecta FormBuilder para construir el formulario de manera reactiva
-    private readonly authUserRegisretService: AuthUserRegisretService, // Inyecta el servicio de autenticación
+    private readonly fb: FormBuilder,
+    private readonly authUserRegisretService: AuthUserRegisretService,
     private readonly router: Router
   ) {
-    this.loginForm = this.fb.group({ // Define el formulario con validaciones
-      email: ['', [Validators.required, Validators.email]], // Campo de email, requerido y con formato de email válido
-      password: ['', [Validators.required, Validators.minLength(8)]] // Campo de contraseña, requerido y con mínimo 8 caracteres
+    this.loginForm = this.createLoginForm();
+  }
+
+  ngOnInit(): void { }
+
+  private createLoginForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  submitForm() { // Método que se ejecuta cuando el usuario envía el formulario
-    if (this.loginForm.valid) { // Verifica si el formulario es válido
-      const userData = { // Obtiene los datos ingresados en el formulario
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password
-      };
+  submitForm(): void {
+    if (this.loginForm.invalid) {
+      this.showInvalidFormAlert();
+      return;
+    }
 
-      this.authUserRegisretService.login(userData).subscribe({ // Llama al servicio de autenticación y se suscribe a la respuesta
-        next: (response) => { // Maneja la respuesta exitosa
-          console.log('Login successful:', response); // Muestra la respuesta en consola
+    const { email, password } = this.loginForm.value;
 
-          if (response.token) { // Verifica si la respuesta incluye un token
-            localStorage.setItem('token', response.token); // Guarda el token en localStorage para futuras peticiones
-            console.log('Token guardado'); // Muestra el token en consola
-          } else {
-            console.warn('No se recibió token en la respuesta'); // Mensaje de advertencia si no se recibe el token
-          }
+    this.authUserRegisretService.login({ email, password }).subscribe({
+      next: (response) => this.handleLoginSuccess(response),
+      error: (error) => this.handleLoginError(error)
+    });
+  }
 
-          const role = this.authUserRegisretService.getUserRole();
+  private handleLoginSuccess(response: any): void {
+    if (response.token) {
+      localStorage.setItem('token', response.token);
+    } else {
+      console.warn('No se recibió token en la respuesta');
+    }
 
-          console.log('Rol del usuario:', role); // Muestra el rol del usuario en consola
-          switch (role) {
-            case 'ROLE_ADMIN':
-              this.router.navigate(['/admin/dashboard']);
-              break;
+    const role = this.authUserRegisretService.getUserRole();
+    this.redirectUserByRole(role);
 
-            case 'ROLE_USER':
-              this.showAccessDeniedAlert();
-              break;
+    Swal.fire({
+      title: '¡Inicio de sesión exitoso!',
+      text: 'Bienvenido al sistema.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  }
 
-            default:
-              this.router.navigate(['/']);
-              break;
-          }
+  private handleLoginError(error: any): void {
+    console.error('Login error:', error);
 
-          Swal.fire({ // Muestra una alerta de éxito en la interfaz
-            title: '¡Inicio de sesión exitoso!',
-            text: 'Bienvenido al sistema.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-          });
-        },
-        error: (error) => { // Maneja la respuesta en caso de error
-          console.error('Login error:', error); // Muestra el error en consola
+    Swal.fire({
+      title: 'Error en el inicio de sesión',
+      text: 'Credenciales incorrectas. Verifica tu correo y contraseña.',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
 
-          Swal.fire({ // Muestra una alerta de error en la interfaz
-            title: 'Error en el inicio de sesión',
-            text: 'Credenciales incorrectas. Verifica tu correo y contraseña.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-          });
+    this.errorMessage = 'Error al iniciar sesión. Verifica tus credenciales.';
+  }
 
-          this.errorMessage = 'Error logging in. Please check your credentials.'; // Guarda un mensaje de error en la variable
-        }
-      });
-
-    } else { // Si el formulario no es válido, muestra una alerta
-      console.log('Form Invalid'); // Muestra en consola que el formulario es inválido
-
-      Swal.fire({ // Muestra una alerta de advertencia en la interfaz
-        title: 'Formulario inválido',
-        text: 'Por favor, ingresa un correo y contraseña válidos.',
-        icon: 'warning',
-        confirmButtonText: 'OK'
-      });
+  private redirectUserByRole(role: string): void {
+    switch (role) {
+      case 'ROLE_ADMIN':
+        this.router.navigate(['/admin/dashboard']);
+        break;
+      case 'ROLE_USER':
+        this.showAccessDeniedAlert();
+        break;
+      default:
+        this.router.navigate(['/']);
     }
   }
 
-  // Método separado para mostrar la alerta
+  private showInvalidFormAlert(): void {
+    Swal.fire({
+      title: 'Formulario inválido',
+      text: 'Por favor, ingresa un correo y contraseña válidos.',
+      icon: 'warning',
+      confirmButtonText: 'OK'
+    });
+  }
+
   private showAccessDeniedAlert(): void {
     Swal.fire({
       icon: 'error',
@@ -106,8 +107,7 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
     });
   }
 
-
-  forgotPassword() {
+  forgotPassword(): void {
     Swal.fire({
       title: 'Recuperar Contraseña',
       text: 'Ingresa tu correo electrónico para recibir instrucciones',
@@ -116,32 +116,30 @@ export class LoginUserComponent implements OnInit { // Declara la clase del comp
       showCancelButton: true,
       confirmButtonText: 'Enviar',
       cancelButtonText: 'Cancelar',
-      inputValidator: (value) => {
-        if (!value) {
-          return 'El correo es obligatorio';
-        }
-      }
-    }).then((result) => {
+      inputValidator: (value) => !value && 'El correo es obligatorio'
+    }).then(result => {
       if (result.isConfirmed && result.value) {
-        const email = result.value;
+        this.sendPasswordRecoveryEmail(result.value);
+      }
+    });
+  }
 
-        this.authUserRegisretService.forgotPassword(email).subscribe({
-          next: () => {
-            Swal.fire({
-              title: 'Correo enviado',
-              text: 'Si el correo es válido, recibirás un enlace para restablecer tu contraseña.',
-              icon: 'success',
-              confirmButtonText: 'OK'
-            });
-          },
-          error: () => {
-            Swal.fire({
-              title: 'Error',
-              text: 'No se pudo enviar el correo. Verifica la dirección ingresada.',
-              icon: 'error',
-              confirmButtonText: 'OK'
-            });
-          }
+  private sendPasswordRecoveryEmail(email: string): void {
+    this.authUserRegisretService.forgotPassword(email).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Correo enviado',
+          text: 'Si el correo es válido, recibirás un enlace para restablecer tu contraseña.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      },
+      error: () => {
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo enviar el correo. Verifica la dirección ingresada.',
+          icon: 'error',
+          confirmButtonText: 'OK'
         });
       }
     });
