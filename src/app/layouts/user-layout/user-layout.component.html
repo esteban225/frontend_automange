@@ -1,1 +1,28 @@
-<h1> vienvenido usuario </h1>
+<div class="module-development">
+  <h1>Módulo en Desarrollo</h1>
+  <p>Esta sección está actualmente en desarrollo. Por favor, vuelva más tarde.</p>
+  <button class="logout-button" (click)="logout()">Cerrar Sesión</button>
+</div>
+
+<style>
+  .module-development {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+
+  .logout-button {
+    margin-top: 20px;
+    padding: 10px 20px; 
+    font-size: 16px;
+    color: #fff;
+    background-color: #d9534f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .logout-button:hover {
+    background-color: #c9302c;
+  }
+</style>

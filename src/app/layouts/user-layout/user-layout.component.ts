@@ -19,4 +19,11 @@ export class UserLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {  
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+    window.location.href = '/auth/login-user'; // Redirigir a la página de inicio de sesión   
+  }
+
 }

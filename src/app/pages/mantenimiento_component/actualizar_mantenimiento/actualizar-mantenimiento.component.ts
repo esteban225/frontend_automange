@@ -24,7 +24,6 @@ export class ActualizarMantenimientoComponent implements OnInit {
 
  ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('ID recibido:', id);
     if (id) {
       this.cargarmantenimiento(+id);
     } else {
@@ -39,7 +38,17 @@ export class ActualizarMantenimientoComponent implements OnInit {
   cargarmantenimiento(id: number): void {
     this.mantenimientosService.buscarMantenimientoId(id)
       .pipe(
-        tap(response => console.log('Respuesta del backend:', response)), // 🔍 Verifica la respuesta
+        tap(mantenimiento => {
+          if (!mantenimiento) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Advertencia',
+              text: 'El mantenimiento no existe'
+            });
+            return;
+          }
+          console.log('Mantenimiento cargado:', mantenimiento);
+        }),
         catchError(error => {
           console.error('Error al obtener el mantenimiento:', error);
           Swal.fire({

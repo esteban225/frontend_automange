@@ -45,7 +45,6 @@ export class CitasComponent implements OnInit {
         return throwError(() => error);
       })
     ).subscribe((response: any) => {
-      console.log('Respuesta de la API:', Response);
       if (response && 'citas' in response && Array.isArray(response.citas)) {
         this.citas = response.citas;
         this.citasFiltradas = response.citas; // Inicializa con todos las citas

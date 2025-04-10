@@ -76,7 +76,7 @@ export class RegisterUserComponent implements OnInit { // Declara la clase del c
 
       this.authUserRegisretService.register(userData).subscribe({ // Llama al servicio de registro y se suscribe a la respuesta
         next: (response) => { // Maneja la respuesta exitosa
-          console.log('User registered successfully:', response); // Muestra la respuesta en consola
+          console.log('User registered successfully'); // Muestra la respuesta en consola
           this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión
           Swal.fire({ // Muestra una alerta de éxito en la interfaz
             title: '¡Registro exitoso!',

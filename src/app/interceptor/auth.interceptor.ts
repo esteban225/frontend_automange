@@ -10,7 +10,6 @@ export class AuthInterceptor implements HttpInterceptor { // Implementa la inter
 
     // Obtiene el token almacenado en localStorage
     const token = localStorage.getItem('token');
-    console.log('Token en Interceptor:', token); // Muestra el token en la consola para depuración
 
     // Si hay token, clonamos la petición original y añadimos el header de autorización
     if (token) {
