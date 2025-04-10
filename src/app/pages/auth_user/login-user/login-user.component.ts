@@ -116,6 +116,7 @@ export class LoginUserComponent implements OnInit {
       title: 'Acceso Restringido',
       text: 'Actualmente tienes un rol de usuario. Esta función aún está en desarrollo. ¡Gracias por tu comprensión!',
     });
+    this.router.navigate(['/user']);
   }
 
   forgotPassword(): void {
