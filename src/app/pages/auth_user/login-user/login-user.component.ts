@@ -112,10 +112,9 @@ export class LoginUserComponent implements OnInit {
 
   private showAccessDeniedAlert(): void {
     Swal.fire({
-      icon: 'error',
-      title: 'Acceso Denegado',
-      text: 'No tienes permiso para acceder a esta sección.',
-      footer: '<p>Actualmente tienes un rol de usuario. Esta función aún está en desarrollo. ¡Gracias por tu comprensión!</p>'
+      icon: 'warning',
+      title: 'Acceso Restringido',
+      text: 'Actualmente tienes un rol de usuario. Esta función aún está en desarrollo. ¡Gracias por tu comprensión!',
     });
   }
 
