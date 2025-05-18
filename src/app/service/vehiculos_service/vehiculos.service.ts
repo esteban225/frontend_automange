@@ -23,7 +23,8 @@ export class VehiculosService {
   //metodo para registrar vehiculos
   registrarVehiculos(vehiculo: Vehiculos, imagen: File): Observable<Vehiculos> {
     console.log("vehiculo a registrar:", vehiculo);
-
+    console.log("Datos enviados:", JSON.stringify(vehiculo));
+    console.log("imagen a registrar:", imagen);
     const formData = new FormData();
     formData.append("vehiculo", JSON.stringify(vehiculo)); // Convertir el producto a JSON
     formData.append("img", imagen); // Adjuntar la imagen
